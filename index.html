@@ -1,0 +1,3169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IRAQ COMMUNITY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* =====================================================================
+     IRAQ COMMUNITY — black & gold, with Abbasid geometric ornament.
+     Variable names are unchanged so every inline style keeps working.
+     ===================================================================== */
+  :root{
+    --bg:#090704;
+    --bg-raised:rgba(242,198,90,0.08);
+    --bg-card:rgba(242,198,90,0.045);
+    --line:rgba(242,198,90,0.24);
+    --line-soft:rgba(242,198,90,0.10);
+    --ink:#F6EFDD;
+    --ink-dim:#C2B89F;
+    --ink-faint:#8F8672;
+    --gold:#C9A227;
+    --gold-bright:#F4C95D;
+    --gold-dim:#8A6D1C;
+    --danger:#D9573F;
+    --radius:14px;
+    --radius-sm:10px;
+    --radius-lg:20px;
+    /* 8-point star lattice (khatem) — the signature motif of Baghdad's tilework */
+    --khatem:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23F4C95D' stroke-width='1'%3E%3Crect x='14' y='14' width='28' height='28'/%3E%3Crect x='14' y='14' width='28' height='28' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='5'/%3E%3Cpath d='M0-7 7 0 0 7-7 0ZM56-7 63 0 56 7 49 0ZM0 49 7 56 0 63-7 56ZM56 49 63 56 56 63 49 56Z'/%3E%3C/g%3E%3C/svg%3E");
+    --khatem-faint:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23F4C95D' stroke-width='1' stroke-opacity='.14'%3E%3Crect x='14' y='14' width='28' height='28'/%3E%3Crect x='14' y='14' width='28' height='28' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='5'/%3E%3Cpath d='M0-7 7 0 0 7-7 0ZM56-7 63 0 56 7 49 0ZM0 49 7 56 0 63-7 56ZM56 49 63 56 56 63 49 56Z'/%3E%3C/g%3E%3C/svg%3E");
+    --diamond:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0 10 5 5 10 0 5Z' fill='%23F4C95D'/%3E%3C/svg%3E");
+    --octagon:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  html,body{height:100%;max-width:100%;overflow-x:hidden;}
+  @supports (overflow:clip){html,body{overflow-x:clip;}}
+  body{
+    margin:0;
+    color:var(--ink);
+    font-family:'IBM Plex Sans Arabic',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    min-height:100%;
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(ellipse 60% 40% at 12% 0%, rgba(201,162,39,0.20), transparent 62%),
+      radial-gradient(ellipse 50% 40% at 95% 14%, rgba(150,100,18,0.13), transparent 62%),
+      radial-gradient(ellipse 60% 40% at 50% 100%, rgba(120,80,12,0.12), transparent 64%);
+    background-repeat:no-repeat;
+  }
+  /* the lattice is only a whisper */
+  body::before{content:'';position:fixed;inset:0;z-index:-1;background:var(--khatem) 0 0/56px 56px repeat;opacity:.06;pointer-events:none;}
+  h1,h2,h3,.display{
+    font-family:'IBM Plex Sans Arabic',sans-serif;
+    font-weight:700;
+    letter-spacing:0;
+    margin:0;
+  }
+  .num{font-variant-numeric:tabular-nums;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--gold-dim);color:var(--ink);}
+  :focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;}
+  button{font-family:inherit;}
+
+  @keyframes fadeRise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes heroReveal{from{opacity:0;transform:scale(1.015);}to{opacity:1;transform:scale(1);}}
+  @keyframes dropIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+
+  /* topbar */
+  .topbar{
+    position:sticky;
+    top:0;
+    top:env(safe-area-inset-top,0px);
+    z-index:40;
+    background:rgba(9,7,4,.88);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    padding:16px 18px 20px;
+    padding-top:calc(16px + env(safe-area-inset-top,0px));
+    display:grid;
+    grid-template-columns:42px minmax(0,1fr) 42px;
+    align-items:center;
+    gap:10px;
+    animation:dropIn .5s cubic-bezier(.16,1,.3,1) both;
+  }
+  /* a chain of small diamonds along the lower edge */
+  .topbar::after{
+    content:'';position:absolute;inset-inline:0;bottom:0;height:9px;
+    background:var(--diamond) 0 50%/9px 9px repeat-x;
+    opacity:.55;
+    border-top:1px solid var(--line);
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 25%,#000 75%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 25%,#000 75%,transparent);
+  }
+  .topbar-spacer{width:42px;height:42px;}
+  .brand{min-width:0;display:flex;flex-direction:column;align-items:center;line-height:1.15;cursor:pointer;}
+  .brand .name{
+    font-family:'Reem Kufi';font-weight:700;font-size:clamp(17px,5.8vw,25px);letter-spacing:.05em;white-space:nowrap;
+    background:linear-gradient(180deg,#FFE9A8 0%, var(--gold-bright) 45%, var(--gold) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 2px 6px rgba(201,162,39,.25));
+  }
+  .brand .mark{font-size:12px;font-weight:500;color:var(--ink-dim);margin-top:3px;}
+  .topbar-actions{display:flex;gap:8px;align-items:center;justify-self:end;}
+  .icon-btn{
+    background:var(--bg-card);border:1px solid var(--line);color:var(--gold-bright);
+    width:42px;height:42px;border-radius:var(--radius-sm);
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px;cursor:pointer;
+    transition:transform .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .icon-btn:hover{border-color:var(--gold);background:var(--bg-raised);}
+  .icon-btn:active{transform:scale(.92);}
+
+  main{max-width:680px;margin:0 auto;padding:22px 16px 110px;}
+
+  /* search */
+  .search-wrap{position:relative;margin:6px 0 26px;}
+  .search-wrap input{
+    width:100%;background:rgba(0,0,0,.45);border:1px solid var(--line);
+    color:var(--ink);padding:15px 48px 15px 16px;border-radius:999px;
+    font-family:'IBM Plex Sans Arabic';font-size:15px;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .search-wrap input::placeholder{color:var(--ink-faint);}
+  .search-wrap input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(244,201,93,.15);}
+  .search-icon{position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--gold);pointer-events:none;font-size:15px;}
+  .search-results{
+    margin-top:10px;border:1px solid var(--line);background:rgba(14,11,6,.96);
+    border-radius:var(--radius);overflow:hidden;
+    box-shadow:0 20px 40px -24px rgba(0,0,0,.9);
+  }
+  .search-results .sr-item{
+    padding:13px 16px;border-bottom:1px solid var(--line-soft);
+    display:flex;justify-content:space-between;align-items:center;cursor:pointer;
+    transition:background .12s ease;
+  }
+  .search-results .sr-item:last-child{border-bottom:none;}
+  .search-results .sr-item:hover,.search-results .sr-item:active{background:var(--bg-raised);}
+  .sr-tag{font-size:11px;color:var(--gold-bright);border:1px solid var(--gold-dim);padding:3px 10px;border-radius:20px;}
+
+  /* nav grid */
+  .nav-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:30px;}
+  .nav-tile{
+    position:relative;
+    background:linear-gradient(160deg,rgba(242,198,90,.10),rgba(242,198,90,.025) 70%);
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 16px;display:flex;flex-direction:column;gap:12px;cursor:pointer;
+    box-shadow:0 18px 32px -24px rgba(0,0,0,.9);
+    transition:transform .15s ease, border-color .15s ease;
+  }
+  .nav-tile::before,.nav-tile::after{content:'';position:absolute;width:16px;height:16px;pointer-events:none;border:0 solid var(--gold);}
+  .nav-tile::before{top:7px;right:7px;border-top-width:2px;border-right-width:2px;border-top-right-radius:6px;}
+  .nav-tile::after{bottom:7px;left:7px;border-bottom-width:2px;border-left-width:2px;border-bottom-left-radius:6px;}
+  .nav-tile:hover{border-color:var(--gold-dim);}
+  .nav-tile:active{transform:scale(.97);border-color:var(--gold);}
+  /* the icon sits in an eight-sided medallion */
+  .nav-tile .ic{
+    position:relative;width:46px;height:46px;display:flex;align-items:center;justify-content:center;
+    color:var(--gold-bright);font-size:21px;
+  }
+  .nav-tile .ic::before,.nav-tile .ic::after{content:'';position:absolute;clip-path:var(--octagon);}
+  .nav-tile .ic::before{inset:0;background:linear-gradient(160deg,var(--gold-bright),var(--gold-dim));}
+  .nav-tile .ic::after{inset:1.5px;background:#120E06;}
+  .nav-tile .ic > svg{position:relative;z-index:1;}
+  .nav-tile .lbl{font-family:'IBM Plex Sans Arabic';font-weight:700;font-size:19px;}
+  .nav-tile .sub{font-size:12.5px;color:var(--ink-faint);}
+
+  .nav-tile-featured{
+    grid-column:1 / -1;
+    flex-direction:row;align-items:center;gap:16px;
+    padding:22px 22px;
+    background:
+      var(--khatem-faint) 0 0/56px 56px,
+      linear-gradient(135deg, rgba(244,201,93,.26), rgba(201,162,39,.06) 65%);
+    border-color:var(--gold);
+    box-shadow:0 0 0 1px rgba(244,201,93,.18), 0 20px 40px -22px rgba(201,162,39,.35);
+  }
+  .nav-tile-featured .ic{flex-shrink:0;width:54px;height:54px;}
+  .nav-tile-featured-text{display:flex;flex-direction:column;gap:2px;flex:1;}
+  .nav-tile-featured .lbl{font-size:24px;color:var(--gold-bright);}
+  .nav-tile-featured .chev{color:var(--gold-bright);font-size:22px;flex-shrink:0;}
+  .nav-tile[style*="span 2"]{flex-direction:row;align-items:center;gap:16px;}
+
+  .section-head{display:flex;justify-content:space-between;align-items:center;margin:34px 0 14px;}
+  .section-head h2{font-size:20px;color:var(--ink);display:flex;align-items:center;gap:10px;}
+  .section-head h2::before{content:'';width:9px;height:9px;background:var(--diamond) center/contain no-repeat;flex-shrink:0;}
+  .section-head .see-all{font-size:12.5px;color:var(--gold-bright);cursor:pointer;padding:4px 0;}
+
+  .feed-item{
+    display:flex;gap:13px;align-items:center;padding:12px 14px;margin-bottom:8px;
+    background:var(--bg-card);border:1px solid var(--line-soft);border-radius:var(--radius);
+    cursor:pointer;
+    transition:transform .12s ease, border-color .12s ease;
+  }
+  .feed-item:hover{border-color:var(--line);}
+  .feed-item:active{transform:scale(.985);border-color:var(--gold-dim);}
+  .avatar{
+    width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,.5);
+    border:1.5px solid var(--gold-dim);display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Sans Arabic';font-weight:700;color:var(--gold-bright);font-size:15px;flex-shrink:0;
+    object-fit:cover;
+  }
+  .avatar.square{border-radius:var(--radius-sm);}
+  .feed-item .ft{flex:1;min-width:0;}
+  .feed-item .ft .t1{font-weight:700;font-size:14.5px;}
+  .feed-item .ft .t2{font-size:12.5px;color:var(--ink-faint);margin-top:2px;}
+  .chev{color:var(--gold-dim);flex-shrink:0;}
+
+  .empty{
+    text-align:center;padding:40px 20px;color:var(--ink-faint);
+    border:1px dashed var(--gold-dim);border-radius:var(--radius);
+    background:rgba(242,198,90,.02);
+  }
+  .empty .big{font-family:'IBM Plex Sans Arabic';font-weight:700;color:var(--ink);font-size:17px;margin-bottom:6px;}
+
+  /* list pages */
+  .page-title{display:flex;align-items:center;gap:12px;margin-bottom:22px;animation:dropIn .4s cubic-bezier(.16,1,.3,1) both;}
+  .back-btn{
+    width:38px;height:38px;border:1px solid var(--line);border-radius:var(--radius-sm);
+    display:flex;align-items:center;justify-content:center;color:var(--gold-bright);font-size:20px;
+    background:var(--bg-card);cursor:pointer;flex-shrink:0;
+    transition:transform .15s ease, border-color .15s ease;
+  }
+  .back-btn:hover{border-color:var(--gold);}
+  .back-btn:active{transform:scale(.9);}
+  .page-title h1{font-size:26px;color:var(--gold-bright);}
+
+  .card-list{display:flex;flex-direction:column;gap:10px;animation:fadeRise .45s cubic-bezier(.16,1,.3,1) both;}
+  .card-row{
+    display:flex;gap:13px;align-items:center;background:var(--bg-card);
+    border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;cursor:pointer;
+    transition:transform .12s ease, border-color .12s ease, background .12s ease;
+  }
+  .card-row:hover{border-color:var(--gold-dim);background:var(--bg-raised);}
+  .card-row:active{transform:scale(.985);border-color:var(--gold);}
+  .card-row .cr-main{flex:1;min-width:0;}
+  .card-row .cr-name{font-family:'IBM Plex Sans Arabic';font-weight:700;font-size:17px;}
+  .card-row .cr-sub{font-size:12.5px;color:var(--ink-faint);margin-top:2px;}
+  .card-row .cr-stat{text-align:left;flex-shrink:0;}
+  .card-row .cr-stat .v{font-family:'Reem Kufi';font-weight:700;color:var(--gold-bright);font-size:17px;}
+  .card-row .cr-stat .k{font-size:10.5px;color:var(--ink-faint);}
+
+  /* profile */
+  .profile-hero{
+    position:relative;overflow:hidden;isolation:isolate;
+    text-align:center;padding:40px 18px 26px;margin-bottom:24px;
+    border-radius:var(--radius-lg);
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 0%, rgba(244,201,93,.22), transparent 68%),
+      var(--khatem-faint) 50% 0/56px 56px,
+      #0E0B06;
+    border:1px solid var(--gold-dim);
+    box-shadow:0 24px 50px -28px rgba(0,0,0,.9), 0 0 0 1px rgba(244,201,93,.06) inset;
+    animation:heroReveal .6s cubic-bezier(.16,1,.3,1) both;
+  }
+  .profile-hero::before,.profile-hero::after{
+    content:'';position:absolute;width:22px;height:22px;border:0 solid var(--gold);pointer-events:none;
+  }
+  .profile-hero::before{top:10px;right:10px;border-top-width:2px;border-right-width:2px;border-top-right-radius:8px;}
+  .profile-hero::after{bottom:10px;left:10px;border-bottom-width:2px;border-left-width:2px;border-bottom-left-radius:8px;}
+  .profile-hero .pavatar{
+    width:104px;height:104px;border-radius:50%;margin:0 auto 16px;background:rgba(0,0,0,.6);
+    border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Sans Arabic';font-weight:700;font-size:32px;color:var(--gold-bright);object-fit:cover;
+    box-shadow:0 0 0 5px rgba(244,201,93,.10), 0 0 0 6px var(--gold-dim), 0 14px 28px -10px rgba(0,0,0,.7);
+  }
+  .profile-hero .pavatar.square{border-radius:22px;}
+  .profile-hero h1{font-size:28px;color:var(--ink);}
+  .profile-hero .psub{color:var(--ink-dim);font-size:13px;margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+  .pill{
+    border:1px solid var(--line);background:rgba(0,0,0,.4);border-radius:20px;padding:4px 13px;
+    font-size:12.5px;color:var(--ink);
+  }
+  .status-dot{display:inline-flex;align-items:center;gap:6px;}
+  .status-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:#5FB574;box-shadow:0 0 6px #5FB57499;}
+  .status-dot.inactive::before{background:var(--ink-faint);box-shadow:none;}
+
+  .roster-strip{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 18px;-webkit-overflow-scrolling:touch;}
+  .roster-strip::-webkit-scrollbar{display:none;}
+  .roster-chip{flex-shrink:0;text-align:center;width:70px;cursor:pointer;transition:transform .15s ease;}
+  .roster-chip:active{transform:scale(.93);}
+  .roster-chip.captain .avatar{outline:2px solid var(--gold-bright);outline-offset:2px;}
+  .cap-badge{display:inline-block;font-size:10px;font-weight:700;background:var(--gold-bright);color:#1A1204;border-radius:8px;padding:1px 7px;margin-top:4px;}
+  .roster-chip .avatar{width:56px;height:56px;margin:0 auto 7px;}
+  .roster-chip .rname{font-size:12px;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:26px;animation:fadeRise .45s cubic-bezier(.16,1,.3,1) both;}
+  .stat-cell{
+    background:linear-gradient(180deg,rgba(242,198,90,.09),rgba(242,198,90,.02));
+    border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:16px 8px 14px;text-align:center;
+  }
+  .stat-cell .sv{font-family:'Reem Kufi';font-weight:700;font-size:27px;line-height:1.1;color:var(--gold-bright);}
+  .stat-cell .sk{font-size:11.5px;color:var(--ink-dim);margin-top:6px;}
+  .stat-cell .sk svg{color:var(--gold-bright);opacity:.9;}
+  .btn.secondary svg{color:var(--gold-bright);}
+
+  .career-row{display:flex;justify-content:space-between;align-items:center;padding:12px 4px;border-bottom:1px solid var(--line-soft);}
+  .career-row:last-child{border-bottom:none;}
+  .career-row .yr{font-family:'Reem Kufi';font-weight:700;color:var(--gold-bright);font-size:15px;width:56px;}
+  .career-row .cn{font-size:14px;color:var(--ink);flex:1;}
+
+  .result-row{display:flex;justify-content:space-between;align-items:center;padding:12px 4px;border-bottom:1px solid var(--line-soft);}
+  .result-row:last-child{border-bottom:none;}
+  .medal{width:26px;text-align:center;font-size:15px;}
+
+  .result-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:6px;}
+  .result-card{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:13px 14px;cursor:pointer;
+    transition:transform .12s ease, border-color .12s ease;
+  }
+  .result-card:hover{border-color:var(--gold-dim);}
+  .result-card:active{transform:scale(.985);border-color:var(--gold);}
+  .result-card-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .result-rank{font-family:'Reem Kufi';font-weight:700;color:var(--gold-bright);font-size:17px;flex-shrink:0;min-width:34px;}
+  .result-rank.qualified{color:#6FCB84;}
+  .result-name{font-family:'IBM Plex Sans Arabic';font-weight:700;font-size:16px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .result-mini-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding-top:10px;border-top:1px solid var(--line-soft);}
+  .result-mini-stats > div{display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .result-mini-stats .rv{font-family:'Reem Kufi';font-weight:700;font-size:17px;}
+  .result-mini-stats .rv.gold{color:var(--gold-bright);}
+  .result-mini-stats .rk{font-size:11px;color:var(--ink-faint);}
+  .result-card-flat{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;}
+  .result-card-flat .result-name{font-size:15px;}
+  .result-kills-badge{
+    font-family:'IBM Plex Sans Arabic';font-weight:700;font-size:13px;color:var(--gold-bright);
+    background:rgba(244,201,93,.10);border:1px solid var(--gold-dim);border-radius:20px;
+    padding:4px 12px;flex-shrink:0;
+  }
+
+  /* format picker (new tournament) */
+  .format-pick{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 16px;margin-bottom:10px;cursor:pointer;transition:transform .12s ease, border-color .12s ease;
+  }
+  .format-pick:active{transform:scale(.985);border-color:var(--gold);}
+  .format-pick .lbl{font-family:'IBM Plex Sans Arabic';font-weight:700;font-size:18px;color:var(--gold-bright);}
+  .format-pick .sub{font-size:12.5px;color:var(--ink-faint);margin-top:5px;}
+  .format-tag{
+    display:inline-block;font-size:11.5px;color:var(--gold-bright);border:1px solid var(--gold-dim);
+    border-radius:20px;padding:3px 10px;margin-bottom:14px;
+  }
+  .champion-banner{
+    margin-top:16px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    font-family:'IBM Plex Sans Arabic';font-weight:700;font-size:15px;color:#1A1204;
+    background:linear-gradient(180deg,#FFE9A8,var(--gold-bright) 40%,var(--gold));
+    border-radius:20px;padding:8px 20px;box-shadow:0 10px 24px -10px rgba(201,162,39,.6);
+  }
+
+  /* generic small nested result-editor card (used inside admin forms) */
+  .mini-result-card{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius-sm);
+    padding:12px;margin-bottom:10px;
+  }
+  .stage-block{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:14px;}
+  .stage-head{display:flex;align-items:center;gap:8px;}
+  .stage-head input{flex:1;}
+  .group-block{background:var(--bg-raised);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px;margin-bottom:10px;}
+  .group-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+  .group-head input{flex:1;}
+
+  /* Clash Squad bracket — admin editor */
+  .cs-match-card{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px;margin-bottom:10px;}
+  .cs-match-teams{display:flex;align-items:center;justify-content:space-between;gap:8px;font-family:'IBM Plex Sans Arabic';font-weight:700;font-size:15px;}
+  .cs-vs{font-size:12px;color:var(--ink-faint);flex-shrink:0;}
+  .cs-winner{color:var(--gold-bright);}
+
+  /* Clash Squad bracket — public view (stacked, no horizontal scroll) */
+  .cs-match-public{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;}
+  .cs-match-public-row{
+    display:flex;align-items:center;justify-content:space-between;padding:11px 14px;
+    border-bottom:1px solid var(--line-soft);font-size:14px;
+  }
+  .cs-match-public-row:last-child{border-bottom:none;}
+  .cs-match-public-row.winner{color:var(--gold-bright);font-weight:700;background:rgba(244,201,93,.07);}
+  .cs-match-public-row .num{font-family:'Reem Kufi';font-weight:700;}
+
+  .tag-row{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0;}
+  .status-badge{font-size:11.5px;padding:4px 12px;border-radius:20px;border:1px solid;}
+  .status-badge.ongoing{color:#6FCB84;border-color:rgba(95,181,116,.40);background:rgba(95,181,116,.09);}
+  .status-badge.upcoming{color:var(--gold-bright);border-color:var(--gold-dim);background:rgba(244,201,93,.08);}
+  .status-badge.finished{color:var(--ink-faint);border-color:var(--line);}
+
+  /* buttons/forms */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:linear-gradient(180deg,#FFE9A8 0%, var(--gold-bright) 35%, var(--gold) 100%);
+    color:#1A1204;font-family:'IBM Plex Sans Arabic';font-weight:700;
+    border:none;padding:14px 20px;border-radius:var(--radius);font-size:16px;cursor:pointer;width:100%;
+    box-shadow:0 14px 28px -12px rgba(201,162,39,.55), inset 0 1px 0 rgba(255,255,255,.4);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:active{transform:scale(.97);box-shadow:0 8px 16px -10px rgba(201,162,39,.5), inset 0 1px 0 rgba(255,255,255,.3);}
+  .btn.secondary{background:var(--bg-card);color:var(--ink);border:1px solid var(--line);box-shadow:none;}
+  .btn.secondary:active{background:var(--bg-raised);}
+  .btn.danger{background:rgba(217,87,63,.08);color:#FF9B82;border:1px solid rgba(217,87,63,.45);box-shadow:none;}
+  .btn.small{width:auto;padding:10px 18px;font-size:14px;}
+
+  .field{margin-bottom:15px;}
+  .field label{display:block;font-size:12.5px;color:var(--ink-dim);margin-bottom:7px;}
+  .field input,.field select,.field textarea{
+    width:100%;background:rgba(0,0,0,.45);border:1px solid var(--line);color:var(--ink);
+    padding:13px 13px;border-radius:var(--radius-sm);font-family:'IBM Plex Sans Arabic';font-size:14px;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(244,201,93,.15);}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+  .admin-tabs{display:flex;gap:7px;margin-bottom:20px;overflow-x:auto;padding-bottom:2px;}
+  .admin-tab{
+    flex-shrink:0;padding:10px 16px;border:1px solid var(--line);border-radius:20px;font-size:13.5px;
+    color:var(--ink-dim);cursor:pointer;background:var(--bg-card);
+    transition:transform .12s ease;
+  }
+  .admin-tab:active{transform:scale(.96);}
+  .admin-tab.active{background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#1A1204;border-color:transparent;font-weight:700;}
+  .badge-dot{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;margin-inline-start:5px;border-radius:9px;background:#C8102E;color:#fff;font-size:10.5px;font-weight:800;line-height:1;}
+
+  .admin-item-row{
+    display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--line);
+    border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:8px;
+  }
+  .admin-item-row .ai-name{flex:1;font-weight:700;font-size:14px;}
+  .admin-item-row .ai-actions{display:flex;gap:6px;}
+  .mini-btn{
+    background:var(--bg-raised);border:1px solid var(--line);color:var(--ink-dim);width:34px;height:34px;
+    border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;
+    transition:transform .12s ease;
+  }
+  .mini-btn:active{transform:scale(.9);}
+  .mini-btn.del{color:#FF9B82;border-color:rgba(217,87,63,.45);}
+
+  .lock-screen{padding:56px 20px;text-align:center;animation:fadeRise .5s cubic-bezier(.16,1,.3,1) both;}
+  .lock-screen .lock-ic{
+    position:relative;width:76px;height:76px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;
+    font-size:30px;color:var(--gold-bright);filter:drop-shadow(0 0 16px rgba(201,162,39,.35));
+  }
+  .lock-screen .lock-ic::before,.lock-screen .lock-ic::after{content:'';position:absolute;clip-path:var(--octagon);}
+  .lock-screen .lock-ic::before{inset:0;background:linear-gradient(160deg,var(--gold-bright),var(--gold-dim));}
+  .lock-screen .lock-ic::after{inset:2px;background:#120E06;}
+  .lock-screen .lock-ic > svg{position:relative;z-index:1;}
+  .lock-screen h1{font-size:25px;margin-bottom:8px;color:var(--gold-bright);}
+  .lock-screen p{color:var(--ink-dim);font-size:14px;margin-bottom:24px;}
+  .code-input{
+    width:100%;text-align:center;letter-spacing:.14em;font-family:'Reem Kufi';font-weight:700;
+    background:rgba(0,0,0,.5);border:1px solid var(--line);color:var(--gold-bright);
+    padding:16px;border-radius:var(--radius);font-size:17px;margin-bottom:16px;
+  }
+  .code-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(244,201,93,.15);}
+  .error-msg{color:#FF9B82;font-size:13px;margin-bottom:12px;}
+
+  .results-editor-row{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;align-items:center;margin-bottom:8px;}
+  .results-editor-row input,.results-editor-row select{padding:10px 9px;font-size:13px;}
+
+  .toast{
+    position:fixed;bottom:calc(22px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);
+    background:linear-gradient(180deg,#FFE9A8,var(--gold-bright) 40%,var(--gold));color:#1A1204;padding:12px 22px;border-radius:20px;
+    font-family:'IBM Plex Sans Arabic';font-weight:700;font-size:15px;z-index:100;
+    box-shadow:0 12px 28px -10px rgba(201,162,39,.6);opacity:0;pointer-events:none;
+    transition:opacity .2s, transform .2s;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(-6px);}
+
+  .loading-strip{padding:44px;text-align:center;color:var(--ink-faint);font-size:13px;}
+
+  .divider-label{
+    font-family:'IBM Plex Sans Arabic';font-weight:700;font-size:16px;color:var(--ink);
+    margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+  }
+  .divider-label::before{content:'';width:8px;height:8px;background:var(--diamond) center/contain no-repeat;flex-shrink:0;}
+  .divider-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);}
+
+  /* bottom navigation (glass) */
+  .bottom-nav{
+    position:fixed;
+    right:16px;left:16px;bottom:16px;
+    max-width:400px;margin:0 auto;
+    z-index:60;
+    display:flex;align-items:center;justify-content:space-around;
+    padding:8px;
+    padding-bottom:calc(8px + env(safe-area-inset-bottom,0px));
+    background:rgba(16,12,6,.78);
+    backdrop-filter:blur(20px) saturate(150%);
+    -webkit-backdrop-filter:blur(20px) saturate(150%);
+    border:1px solid var(--line);
+    border-radius:999px;
+    box-shadow:0 20px 44px -18px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.05);
+    transition:transform .35s cubic-bezier(.16,1,.3,1), opacity .3s ease;
+  }
+  .bottom-nav.hidden{transform:translateY(140%);opacity:0;pointer-events:none;}
+  .bn-btn{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    background:none;border:none;color:var(--ink-faint);
+    padding:12px;border-radius:999px;cursor:pointer;
+    transition:color .2s ease, background .25s ease, transform .15s ease;
+  }
+  .bn-btn .bn-ic{display:flex;align-items:center;justify-content:center;transition:transform .2s ease;}
+  .bn-btn.active{color:var(--gold-bright);background:rgba(244,201,93,.14);}
+  .bn-btn.active .bn-ic{transform:translateY(-1px);}
+  .bn-btn:active{transform:scale(.9);}
+
+  @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;}}
+
+  /* news */
+  .news-list{display:flex;flex-direction:column;gap:18px;animation:fadeRise .45s cubic-bezier(.16,1,.3,1) both;}
+  .news-card{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius-lg);
+    overflow:hidden;
+    box-shadow:0 16px 34px -22px rgba(0,0,0,.9);
+  }
+  .news-card-img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--bg-raised);}
+  .news-card-img-ph{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:var(--bg-raised);color:var(--ink-faint);font-size:13px;}
+  .news-card-body{padding:16px;}
+  .news-card-date{font-size:12px;color:var(--gold-bright);margin-bottom:6px;}
+  .news-card-title{font-family:'IBM Plex Sans Arabic';font-weight:700;font-size:20px;margin-bottom:8px;line-height:1.35;}
+  .news-card-desc{font-size:14px;color:var(--ink-dim);line-height:1.8;white-space:pre-wrap;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-actions" style="justify-self:start;">
+    <button class="icon-btn" onclick="openApplyForm()" title="تسجيل سكواد" id="applyBtn"></button>
+  </div>
+  <div class="brand" onclick="nav('home')">
+    <span class="name">IRAQ COMMUNITY</span>
+    <span class="mark">بوابة المجتمع العراقي</span>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn" onclick="nav('admin')" title="Admin" id="adminGearBtn"></button>
+  </div>
+</div>
+
+<main id="app"></main>
+<div class="toast" id="toast"></div>
+
+<nav class="bottom-nav hidden" id="bottomNav">
+  <button class="bn-btn" data-route="news" id="bnNews" onclick="nav('news')"><span class="bn-ic"></span></button>
+  <button class="bn-btn" data-route="home" id="bnHome" onclick="nav('home')"><span class="bn-ic"></span></button>
+  <button class="bn-btn" data-route="profile" id="bnProfile" onclick="nav('profile')"><span class="bn-ic"></span></button>
+</nav>
+
+<script>
+/* ---------------------------------------------------------------
+   IRAQ COMMUNITY — esports database
+   Storage: shared "db" capability when available, else in-memory.
+--------------------------------------------------------------- */
+
+/* All secrets (Firebase service account, Supabase service key, admin code)
+   now live server-side in Netlify Functions — nothing sensitive ships to
+   the browser anymore. */
+const API_BASE = '/.netlify/functions';
+let adminToken = localStorage.getItem('ic_admin_token') || null;
+let isAdmin = !!adminToken;
+
+let state = { teams: [], players: [], coaches: [], tournaments: [], applications: [], news: [] };
+
+let route = { name: 'home', id: null };
+
+function nav(name, id){
+  route = { name, id: id || null };
+  render();
+  window.scrollTo(0,0);
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(showToast._h);
+  showToast._h = setTimeout(()=>t.classList.remove('show'), 1800);
+}
+
+function uid(prefix){
+  return prefix + '_' + Math.random().toString(36).slice(2,9);
+}
+
+/* Storage returns FROZEN document snapshots — mutating them directly
+   silently does nothing. Always deep-clone before storing locally or
+   editing, so every object in `state` (and every draft) is a plain,
+   mutable copy. */
+function clone(obj){
+  if(obj===null || obj===undefined) return obj;
+  return JSON.parse(JSON.stringify(obj));
+}
+
+/* ---------------- persistence layer (Netlify Functions API) ---------------- */
+
+function authHeaders(){
+  const h = { 'Content-Type': 'application/json' };
+  if(adminToken) h['Authorization'] = 'Bearer ' + adminToken;
+  return h;
+}
+
+/* Images go through /upload-image, which hands back a short-lived signed
+   Supabase URL — the service key never reaches the browser. */
+const assetsCap = {
+  upload: async (file) => {
+    const signRes = await fetch(API_BASE + '/upload-image', {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ fileName: file.name, contentType: file.type || 'application/octet-stream' })
+    });
+    if(!signRes.ok) throw new Error('تعذر الحصول على رابط الرفع (' + signRes.status + ')');
+    const { uploadUrl, publicUrl } = await signRes.json();
+    let putRes;
+    try{
+      putRes = await fetch(uploadUrl, {
+        method: 'PUT',
+        headers: { 'Content-Type': file.type || 'application/octet-stream' },
+        body: file
+      });
+    }catch(networkErr){
+      throw new Error('شبكة: ' + networkErr.message + ' | الرابط: ' + uploadUrl);
+    }
+    if(!putRes.ok) throw new Error('فشل رفع الصورة (' + putRes.status + ') | الرابط: ' + uploadUrl);
+    return { url: publicUrl };
+  }
+};
+
+async function fetchCollection(collection){
+  const res = await fetch(API_BASE + '/' + collection);
+  if(!res.ok) throw new Error(collection + ' fetch failed: ' + res.status);
+  return res.json();
+}
+
+async function initDb(){
+  try{
+    const [teams, players, tournaments, coaches, news] = await Promise.all([
+      fetchCollection('teams'),
+      fetchCollection('players'),
+      fetchCollection('tournaments'),
+      fetchCollection('coaches').catch(()=>[]),
+      fetchCollection('news').catch(()=>[])
+    ]);
+    state.teams = (teams||[]).map(clone);
+    state.players = (players||[]).map(clone);
+    state.tournaments = (tournaments||[]).map(clone);
+    state.coaches = (coaches||[]).map(clone);
+    state.news = (news||[]).map(clone);
+    if(isAdmin) await loadApplications();
+  }catch(e){
+    console.error('db read failed', e);
+    showToast('تعذر الاتصال بالخادم');
+  }
+  render();
+}
+
+async function persistDoc(collection, docObj){
+  const clean = clone(docObj);
+  const idx = state[collection].findIndex(x=>x.id===clean.id);
+  if(idx>=0){ state[collection][idx] = clean; }
+  else { state[collection].push(clean); }
+  try{
+    const res = await fetch(API_BASE + '/' + collection, {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify(clean)
+    });
+    if(!res.ok){
+      if(res.status === 401) showToast('انتهت صلاحية الدخول، سجّل الدخول من جديد');
+      else showToast('تعذر الحفظ على الخادم — محفوظ محلياً فقط');
+    }
+  }catch(e){ console.error('write failed', e); showToast('تعذر الحفظ على الخادم — محفوظ محلياً فقط'); }
+  return clean;
+}
+
+async function deleteDoc(collection, id){
+  state[collection] = state[collection].filter(x=>x.id!==id);
+  try{
+    const res = await fetch(API_BASE + '/' + collection + '?id=' + encodeURIComponent(id), {
+      method: 'DELETE',
+      headers: authHeaders()
+    });
+    if(!res.ok && res.status === 401) showToast('انتهت صلاحية الدخول، سجّل الدخول من جديد');
+  }catch(e){ console.error('delete failed', e); }
+}
+
+async function persistAll(){
+  try{
+    for(const t of state.teams) await persistDoc('teams', t);
+    for(const p of state.players) await persistDoc('players', p);
+    for(const c of state.coaches) await persistDoc('coaches', c);
+    for(const tr of state.tournaments) await persistDoc('tournaments', tr);
+    for(const n of state.news) await persistDoc('news', n);
+  }catch(e){ console.error(e); }
+}
+
+/* ---------------- helpers ---------------- */
+
+function team(id){ return state.teams.find(t=>t.id===id); }
+function player(id){ return state.players.find(p=>p.id===id); }
+function coach(id){ return state.coaches.find(c=>c.id===id); }
+function coachCurrentTeam(c){ return state.teams.find(t=>t.coachId===c.id) || null; }
+function tournament(id){ return state.tournaments.find(t=>t.id===id); }
+/* Ranks a tournament's teams by total points (tie-break: kills, then booyahs) — always live,
+   never a manually-entered number, so the table re-orders itself as stats are edited. */
+function rankTournamentTeams(tr){
+  return (tr.teamResults||[]).slice().sort((a,b)=>
+    (b.totalPoints||0)-(a.totalPoints||0) ||
+    (b.kills||0)-(a.kills||0) ||
+    (b.booyahs||0)-(a.booyahs||0)
+  ).map((r,idx)=>({ ...r, rank: idx+1 }));
+}
+function teamPlayers(t){ return (t.playerIds||[]).map(id=>player(id)).filter(Boolean); }
+
+/* ================= Clash Squad (single-elimination bracket) ================= */
+function csRoundNames(squadsCount){
+  const names = []; let n = squadsCount;
+  while(n>1){
+    if(n===2) names.push('النهائي');
+    else if(n===4) names.push('نصف النهائي');
+    else if(n===8) names.push('ربع النهائي');
+    else names.push('دور الـ'+n);
+    n = n/2;
+  }
+  return names;
+}
+function generateCsRounds(squadsCount){
+  const names = csRoundNames(squadsCount);
+  let matchCount = squadsCount/2;
+  return names.map(name=>{
+    const matches = [];
+    for(let i=0;i<matchCount;i++) matches.push({id:uid('m'), teamAId:null, teamBId:null, scoreA:0, scoreB:0, playerStats:[]});
+    matchCount = matchCount/2;
+    return {name, matches};
+  });
+}
+function csMatchWinner(m){
+  if(m.teamAId && m.teamBId && Number(m.scoreA)!==Number(m.scoreB) && (Number(m.scoreA)>0||Number(m.scoreB)>0)){
+    return Number(m.scoreA)>Number(m.scoreB) ? m.teamAId : m.teamBId;
+  }
+  return null;
+}
+/* Recomputes every later round's slots from current scores — safe to call repeatedly. */
+function propagateCsBracket(tr){
+  const rounds = tr.csRounds||[];
+  for(let r=0;r<rounds.length-1;r++){
+    const cur = rounds[r].matches, next = rounds[r+1].matches;
+    cur.forEach((m,i)=>{
+      const winnerId = csMatchWinner(m);
+      const nm = next[Math.floor(i/2)];
+      if(nm){ if(i%2===0) nm.teamAId = winnerId; else nm.teamBId = winnerId; }
+    });
+  }
+}
+function csChampion(tr){
+  if(tr.status!=='finished') return null;
+  const rounds = tr.csRounds||[];
+  if(!rounds.length) return null;
+  const finalMatch = rounds[rounds.length-1].matches[0];
+  return finalMatch ? csMatchWinner(finalMatch) : null;
+}
+function csFurthestRound(tr, teamId){
+  const rounds = tr.csRounds||[];
+  let furthest = -1;
+  rounds.forEach((round,ri)=>{ round.matches.forEach(m=>{ if(m.teamAId===teamId||m.teamBId===teamId) furthest=Math.max(furthest,ri); }); });
+  return furthest>=0 ? rounds[furthest].name : null;
+}
+
+/* ================= Battle Royale (multi-stage groups) ================= */
+function rankGroupTeams(group){
+  const resultsByTeam = {};
+  (group.teamResults||[]).forEach(r=>{ resultsByTeam[r.teamId] = r; });
+  const rows = (group.teamIds||[]).map(tid=>{
+    if(resultsByTeam[tid]) return resultsByTeam[tid];
+    const t = team(tid);
+    return { teamId: tid, teamName: t ? t.name : '', booyahs:0, kills:0, placementPoints:0, totalPoints:0 };
+  });
+  return rows.slice().sort((a,b)=>
+    (b.totalPoints||0)-(a.totalPoints||0) || (b.kills||0)-(a.kills||0) || (b.booyahs||0)-(a.booyahs||0)
+  ).map((r,idx)=>({ ...r, rank: idx+1 }));
+}
+/* Returns tr.brStages, or — for tournaments saved before this system existed —
+   wraps the old flat participantTeamIds/teamResults/playerResults into one implicit stage/group. */
+function getBrStages(tr){
+  if(tr.brStages && tr.brStages.length) return tr.brStages;
+  if((tr.participantTeamIds&&tr.participantTeamIds.length) || (tr.teamResults&&tr.teamResults.length)){
+    return [{ id: uid('stg'), name:'النتائج', qualifyPerGroup:0,
+      groups:[{ id: uid('grp'), name:'', teamIds:(tr.participantTeamIds||[]).slice(), matchesCount: tr.matchesCount||0,
+        teamResults:(tr.teamResults||[]).slice(), playerResults:(tr.playerResults||[]).slice() }] }];
+  }
+  return [];
+}
+/* Teams eligible to be placed into a given stage: for stage 0, the tournament's
+   registered participants; for later stages, the top qualifyPerGroup finishers
+   of every group in the previous stage. */
+function stageEligiblePool(d, stageIndex){
+  const stages = getBrStages(d);
+  if(stageIndex===0) return (d.participantTeamIds||[]).map(id=>team(id)).filter(Boolean);
+  const prev = stages[stageIndex-1];
+  if(!prev) return [];
+  const out = [];
+  prev.groups.forEach(g=>{
+    const ranked = rankGroupTeams(g);
+    const n = prev.qualifyPerGroup || ranked.length;
+    ranked.slice(0,n).forEach(r=>{ if(!out.find(x=>x.id===r.teamId)){ const t=team(r.teamId); if(t) out.push(t); } });
+  });
+  return out;
+}
+function brChampion(tr){
+  if(tr.status!=='finished') return null;
+  const stages = getBrStages(tr);
+  if(!stages.length) return null;
+  const finalStage = stages[stages.length-1];
+  if(!finalStage.groups.length) return null;
+  const ranked = rankGroupTeams(finalStage.groups[0]);
+  return (ranked.length && (ranked[0].totalPoints||0)>0) ? ranked[0].teamId : null;
+}
+
+/* ================= cross-format helpers (participation, titles, summaries) ================= */
+function tournamentsForTeam(teamId){
+  return state.tournaments.filter(tr=>{
+    if((tr.participantTeamIds||[]).includes(teamId)) return true;
+    if(tr.format==='cs') return (tr.csRounds||[]).some(rd=>rd.matches.some(m=>m.teamAId===teamId||m.teamBId===teamId));
+    return getBrStages(tr).some(stage=>stage.groups.some(g=>g.teamIds.includes(teamId) || (g.teamResults||[]).some(r=>r.teamId===teamId)));
+  });
+}
+function tournamentsForPlayer(playerId){
+  const pl = player(playerId);
+  const viaTeam = pl && pl.currentTeamId ? tournamentsForTeam(pl.currentTeamId) : [];
+  const viaOwnStats = state.tournaments.filter(tr=>{
+    if(tr.format==='cs') return (tr.csRounds||[]).some(rd=>rd.matches.some(m=>(m.playerStats||[]).some(r=>r.playerId===playerId)));
+    return getBrStages(tr).some(stage=>stage.groups.some(g=>(g.playerResults||[]).some(r=>r.playerId===playerId)));
+  });
+  const merged = [...viaTeam];
+  viaOwnStats.forEach(tr=>{ if(!merged.find(x=>x.id===tr.id)) merged.push(tr); });
+  return merged;
+}
+function teamResultSummaryInTournament(tr, teamId){
+  if(tr.format==='cs'){
+    if(tr.championTeamId===teamId) return 'بطل';
+    const furthest = csFurthestRound(tr, teamId);
+    return furthest ? ('وصل إلى '+furthest) : 'مشارك';
+  }
+  if(tr.championTeamId===teamId) return 'بطل';
+  let total=0, found=false;
+  getBrStages(tr).forEach(stage=>stage.groups.forEach(g=>{
+    const r=(g.teamResults||[]).find(x=>x.teamId===teamId);
+    if(r){ found=true; total+=r.totalPoints||0; }
+  }));
+  return found ? (total+' نقطة') : 'مشارك';
+}
+function playerResultSummaryInTournament(tr, playerId){
+  let kills=0;
+  if(tr.format==='cs'){
+    (tr.csRounds||[]).forEach(rd=>rd.matches.forEach(m=>{ const r=(m.playerStats||[]).find(x=>x.playerId===playerId); if(r) kills+=r.kills||0; }));
+  } else {
+    getBrStages(tr).forEach(stage=>stage.groups.forEach(g=>{ const r=(g.playerResults||[]).find(x=>x.playerId===playerId); if(r) kills+=r.kills||0; }));
+  }
+  return kills>0 ? (kills+' قتلة') : 'مشارك';
+}
+function initials(name){ return (name||'?').trim().slice(0,2).toUpperCase(); }
+function esc(s){ return (s==null?'':String(s)).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function statusLabel(s){ return {active:'نشط', inactive:'غير نشط', ongoing:'جارية', upcoming:'قادمة', finished:'منتهية'}[s] || s; }
+function statusClass(s){ return {ongoing:'ongoing', upcoming:'upcoming', finished:'finished'}[s] || ''; }
+
+/* ---------------- gold line-icon set (replaces emoji) ---------------- */
+const ICON_PATHS = {
+  trophy: '<path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4M17 5h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"/>',
+  users: '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="8.2" r="2.6"/><path d="M14.6 14.2c2.5.5 4.4 2.8 4.4 5.8"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>',
+  gear: '<circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.5-2-3.4-2.3.9a7.6 7.6 0 0 0-2.6-1.5L14 2h-4l-.5 2.4a7.6 7.6 0 0 0-2.6 1.5l-2.3-.9-2 3.4 2 1.5a7.6 7.6 0 0 0 0 3l-2 1.5 2 3.4 2.3-.9a7.6 7.6 0 0 0 2.6 1.5L10 22h4l.5-2.4a7.6 7.6 0 0 0 2.6-1.5l2.3.9 2-3.4-2-1.5Z"/>',
+  camera: '<path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.4"/>',
+  crosshair: '<circle cx="12" cy="12" r="7.5"/><path d="M12 2v3.5M12 18.5V22M2 12h3.5M18.5 12H22"/>',
+  gamepad: '<rect x="2.5" y="7.5" width="19" height="10" rx="4"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="16" cy="10.8" r="1" fill="currentColor" stroke="none"/><circle cx="18.3" cy="13.2" r="1" fill="currentColor" stroke="none"/>',
+  medal: '<path d="M8 3 5 9l3 2M16 3l3 6-3 2"/><circle cx="12" cy="15" r="6"/><path d="M12 12.3 13 15h2.4l-1.9 1.5.7 2.3L12 17.3l-2.2 1.5.7-2.3-1.9-1.5H11l1-2.7Z" fill="currentColor" stroke="none"/>',
+  lock: '<rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>',
+  search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.3-4.3"/>',
+  star: '<path d="M12 2.7l2.9 6 6.5.8-4.8 4.5 1.3 6.5L12 17.2l-5.9 3.3 1.3-6.5-4.8-4.5 6.5-.8Z" fill="currentColor" stroke="none"/>',
+  clipboard: '<rect x="6" y="4.5" width="12" height="17" rx="2"/><rect x="9" y="2.5" width="6" height="3.5" rx="1"/><path d="M9 11h6M9 14.5h6M9 18h3.5"/>',
+  home: '<path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-6h4v6h3a1 1 0 0 0 1-1v-9"/>',
+  bell: '<path d="M6 9a6 6 0 0 1 12 0c0 4.5 1.5 6 2 6.5H4c.5-.5 2-2 2-6.5Z"/><path d="M10 19.5a2 2 0 0 0 4 0"/>',
+  key: '<circle cx="8" cy="15" r="4"/><path d="M11.3 11.7 20 3M15.5 6.5 18 9M18.5 3.5 21 6"/>'
+};
+function icon(name, size){
+  size = size || 18;
+  const body = ICON_PATHS[name] || '';
+  return `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-3px;flex-shrink:0;">${body}</svg>`;
+}
+
+/* Flag emoji: uses the saved flag; falls back to 🇮🇶 only when the country is Iraq */
+function flagOf(flag, countryText){
+  if(flag && String(flag).trim()) return String(flag).trim();
+  return /العراق|iraq/i.test(countryText||'') ? '🇮🇶' : '';
+}
+const FLAG_CHOICES = ['🇮🇶','🇸🇦','🇰🇼','🇦🇪','🇶🇦','🇧🇭','🇴🇲','🇯🇴','🇸🇾','🇱🇧','🇪🇬','🇲🇦','🇩🇿','🇹🇳','🇱🇾','🇾🇪','🇸🇩','🇵🇸','🇹🇷','🇮🇷'];
+function flagFieldHtml(d, countryVal, inputId, syncName, label){
+  const cur = flagOf(d.flag, countryVal);
+  return `<div class="field"><label>${label}</label>
+    <input id="${inputId}" value="${esc(d.flag||'')}" placeholder="${cur||'🏳️'}  الصق العلم هنا (إيموجي)" style="font-size:20px;">
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+      ${FLAG_CHOICES.map(f=>`<button type="button" class="mini-btn" style="font-size:18px;width:38px;height:34px;" onclick="document.getElementById('${inputId}').value='${f}';${syncName}();">${f}</button>`).join('')}
+    </div>
+    <div style="font-size:11px;color:var(--ink-faint);margin-top:4px;">اختر علم من القائمة أو الصق أي إيموجي علم. إذا تركته فاضي ما يظهر علم (ماعدا العراق).</div>
+  </div>`;
+}
+function avatarImg(url, name, square){
+  if(url) return `<img class="avatar${square?' square':''}" src="${esc(url)}" alt="${esc(name)}">`;
+  return `<div class="avatar${square?' square':''}">${esc(initials(name))}</div>`;
+}
+
+/* ---------------- render router ---------------- */
+
+function render(){
+  const app = document.getElementById('app');
+  let html = '';
+  switch(route.name){
+    case 'home': html = renderHome(); break;
+    case 'teams': html = renderTeamsList(); break;
+    case 'team': html = renderTeamProfile(route.id); break;
+    case 'players': html = renderPlayersList(); break;
+    case 'player': html = renderPlayerProfile(route.id); break;
+    case 'coaches': html = renderCoachesList(); break;
+    case 'coach': html = renderCoachProfile(route.id); break;
+    case 'tournaments': html = renderTournamentsList(); break;
+    case 'tournament': html = renderTournamentProfile(route.id); break;
+    case 'apply': html = renderApplyView(); break;
+    case 'admin': html = isAdmin ? renderAdminDashboard() : renderAdminLock(); break;
+    case 'admin-edit': html = renderAdminEditForm(); break;
+    case 'news': html = renderNewsPage(); break;
+    case 'profile': html = renderMyProfile(); break;
+    case 'register': html = renderRegisterView(); break;
+    default: html = renderHome();
+  }
+  app.innerHTML = html;
+  updateBottomNav();
+}
+
+/* Bottom nav shows only on the 3 main tabs; internal pages use the back-btn instead. */
+const BOTTOM_NAV_ROUTES = ['home','news','profile'];
+function updateBottomNav(){
+  const el = document.getElementById('bottomNav');
+  if(!el) return;
+  if(BOTTOM_NAV_ROUTES.includes(route.name)) el.classList.remove('hidden');
+  else el.classList.add('hidden');
+  el.querySelectorAll('.bn-btn').forEach(b=>b.classList.toggle('active', b.dataset.route===route.name));
+}
+
+/* ---------------- HOME ---------------- */
+
+function renderHome(){
+  const latestTeams = [...state.teams].slice(-3).reverse();
+  const latestTournaments = [...state.tournaments].slice(-3).reverse();
+  const latestPlayers = [...state.players].slice(-3).reverse();
+
+  return `
+    <div class="search-wrap">
+      <input id="homeSearch" placeholder="ابحث عن لاعب أو فريق أو مدرب..." oninput="onSearch(this.value)">
+      <span class="search-icon">${icon('search',15)}</span>
+    </div>
+    <div id="searchResults"></div>
+
+    <div class="nav-grid">
+      <div class="nav-tile nav-tile-featured" onclick="nav('tournaments')">
+        <span class="ic">${icon('trophy',26)}</span>
+        <div class="nav-tile-featured-text">
+          <span class="lbl">البطولات</span>
+          <span class="sub">${state.tournaments.length} بطولة مسجلة</span>
+        </div>
+        <span class="chev">‹</span>
+      </div>
+      <div class="nav-tile" onclick="nav('teams')">
+        <span class="ic">${icon('users',22)}</span><span class="lbl">الفرق</span>
+        <span class="sub">${state.teams.length} فريق مسجل</span>
+      </div>
+      <div class="nav-tile" onclick="nav('players')">
+        <span class="ic">${icon('user',22)}</span><span class="lbl">اللاعبين</span>
+        <span class="sub">${state.players.length} لاعب مسجل</span>
+      </div>
+      <div class="nav-tile" style="grid-column:span 2;" onclick="nav('coaches')">
+        <span class="ic">${icon('user',22)}</span><span class="lbl">المدربين</span>
+        <span class="sub">${state.coaches.length} مدرب مسجل</span>
+      </div>
+    </div>
+
+    <div class="section-head"><h2>آخر البطولات</h2><span class="see-all" onclick="nav('tournaments')">عرض الكل ›</span></div>
+    ${latestTournaments.length ? latestTournaments.map(t=>`
+      <div class="feed-item" onclick="nav('tournament','${t.id}')">
+        ${avatarImg(t.logo, t.name, true)}
+        <div class="ft"><div class="t1">${esc(t.name)}</div><div class="t2">${esc(t.game)} · ${statusLabel(t.status)}</div></div>
+        <span class="chev">‹</span>
+      </div>`).join('') : `<div class="empty"><div class="big">لا توجد بطولات بعد</div>أضف بطولة من لوحة الإدارة</div>`}
+
+    <div class="section-head"><h2>آخر الفرق</h2><span class="see-all" onclick="nav('teams')">عرض الكل ›</span></div>
+    ${latestTeams.length ? latestTeams.map(t=>`
+      <div class="feed-item" onclick="nav('team','${t.id}')">
+        ${avatarImg(t.logo, t.name, true)}
+        <div class="ft"><div class="t1">${esc(t.name)}</div><div class="t2">${esc(t.game)} · ${flagOf(t.flag,t.country)} ${esc(t.country)}</div></div>
+        <span class="chev">‹</span>
+      </div>`).join('') : `<div class="empty"><div class="big">لا توجد فرق بعد</div>أضف فريقاً من لوحة الإدارة</div>`}
+
+    <div class="section-head"><h2>آخر اللاعبين</h2><span class="see-all" onclick="nav('players')">عرض الكل ›</span></div>
+    ${latestPlayers.length ? latestPlayers.map(p=>`
+      <div class="feed-item" onclick="nav('player','${p.id}')">
+        ${avatarImg(p.photo, p.name)}
+        <div class="ft"><div class="t1">${esc(p.name)}</div><div class="t2">${p.currentTeamId && team(p.currentTeamId) ? esc(team(p.currentTeamId).name) : 'بدون فريق'}</div></div>
+        <span class="chev">‹</span>
+      </div>`).join('') : `<div class="empty"><div class="big">لا يوجد لاعبون بعد</div>أضف لاعباً من لوحة الإدارة</div>`}
+  `;
+}
+
+function onSearch(q){
+  const box = document.getElementById('searchResults');
+  q = q.trim();
+  if(!q){ box.innerHTML=''; return; }
+  const ql = q.toLowerCase();
+  const teams = state.teams.filter(t=>t.name.toLowerCase().includes(ql));
+  const players = state.players.filter(p=>p.name.toLowerCase().includes(ql));
+  const coachesFound = state.coaches.filter(c=>c.name.toLowerCase().includes(ql));
+  const results = [
+    ...players.map(p=>({type:'لاعب', label:p.name, sub: p.currentTeamId && team(p.currentTeamId) ? team(p.currentTeamId).name : '', go:()=>nav('player',p.id)})),
+    ...coachesFound.map(c=>({type:'مدرب', label:c.name, sub: coachCurrentTeam(c) ? coachCurrentTeam(c).name : '', go:()=>nav('coach',c.id)})),
+    ...teams.map(t=>({type:'فريق', label:t.name, sub: t.game, go:()=>nav('team',t.id)}))
+  ];
+  if(results.length===0){ box.innerHTML = `<div class="empty">لا توجد نتائج لـ "${esc(q)}"</div>`; return; }
+  box.innerHTML = `<div class="search-results">${results.map((r,i)=>`
+    <div class="sr-item" onclick="__searchGo(${i})"><span>${esc(r.label)} <span style="color:var(--ink-faint);font-size:12px;">${esc(r.sub)}</span></span><span class="sr-tag">${r.type}</span></div>
+  `).join('')}</div>`;
+  window.__searchResultsCache = results;
+}
+function __searchGo(i){ window.__searchResultsCache[i].go(); }
+
+/* ---------------- NEWS (placeholder — full system comes in a later phase) ---------------- */
+
+function renderNewsPage(){
+  const items = newsSorted();
+  return `
+    <div class="page-title"><h1>الأخبار</h1></div>
+    ${items.length===0 ? `<div class="empty"><div class="big">لا توجد أخبار حالياً</div>تابعنا هنا لآخر أخبار المجتمع</div>` : `
+    <div class="news-list">
+      ${items.map(n=>`
+        <div class="news-card">
+          ${n.image ? `<img class="news-card-img" src="${esc(n.image)}" alt="${esc(n.title)}">` : `<div class="news-card-img-ph">لا توجد صورة</div>`}
+          <div class="news-card-body">
+            <div class="news-card-date">${esc(formatNewsDate(n.publishedAt))}</div>
+            <div class="news-card-title">${esc(n.title)}</div>
+            <div class="news-card-desc">${esc(n.description||'')}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>`}
+  `;
+}
+/* Newest-first: falls back to createdAt, then id order, if publishedAt is missing. */
+function newsSorted(){
+  return [...state.news].sort((a,b)=>{
+    const da = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+    const db = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+    return db - da;
+  });
+}
+function formatNewsDate(dateStr){
+  if(!dateStr) return '';
+  const d = new Date(dateStr);
+  if(isNaN(d.getTime())) return dateStr;
+  return d.toLocaleDateString('ar', { year:'numeric', month:'long', day:'numeric' });
+}
+
+/* ---------------- PROFILE REGISTRATION (registration-code claim) ---------------- */
+
+const MY_REG_KEY = 'ic_my_registration';
+let registerError = '';
+
+function getMyRegistration(){
+  try{
+    const raw = localStorage.getItem(MY_REG_KEY);
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+function setMyRegistration(type, id){
+  localStorage.setItem(MY_REG_KEY, JSON.stringify({ type, id }));
+}
+function clearMyRegistration(){
+  localStorage.removeItem(MY_REG_KEY);
+}
+
+/* Looks up a player/coach whose saved registrationCode matches the entered code. */
+function findByRegistrationCode(codeRaw){
+  const code = String(codeRaw||'').trim().toUpperCase();
+  if(!code) return null;
+  const p = state.players.find(x=>String(x.registrationCode||'').trim().toUpperCase()===code);
+  if(p) return { type:'player', id:p.id };
+  const c = state.coaches.find(x=>String(x.registrationCode||'').trim().toUpperCase()===code);
+  if(c) return { type:'coach', id:c.id };
+  return null;
+}
+
+function renderRegisterView(){
+  return `
+    <div class="page-title"><h1>الدخول إلى البروفايل</h1></div>
+    <div class="empty" style="margin-bottom:18px;"><div class="big">${icon('key',20)} رمز التسجيل</div>أدخل رمز التسجيل الخاص بك كلاعب أو مدرب لعرض ملفك الشخصي وربطه بهذا الجهاز.</div>
+    <div class="field">
+      <label>رمز التسجيل</label>
+      <input id="regCodeInput" placeholder="مثال: IC-A1B2C3" style="text-transform:uppercase;" onkeydown="if(event.key==='Enter') submitRegisterCode();">
+    </div>
+    ${registerError ? `<div style="color:var(--danger);font-size:13px;margin:8px 0 4px;">${esc(registerError)}</div>` : ''}
+    <div style="height:8px;"></div>
+    <button class="btn" onclick="submitRegisterCode()">دخول</button>
+  `;
+}
+
+function submitRegisterCode(){
+  const input = document.getElementById('regCodeInput');
+  const code = input ? input.value : '';
+  const found = findByRegistrationCode(code);
+  if(!found){
+    registerError = 'الرمز غير صحيح، تأكد منه وحاول مرة أخرى';
+    render();
+    return;
+  }
+  registerError = '';
+  setMyRegistration(found.type, found.id);
+  nav('profile');
+}
+
+function logoutMyProfile(){
+  clearMyRegistration();
+  registerError = '';
+  render();
+}
+
+/* Main "Profile" tab: shows the registered player/coach's existing data & stats
+   directly from the database — never a separate/new copy of it. */
+function renderMyProfile(){
+  const reg = getMyRegistration();
+  if(!reg) return renderRegisterView();
+
+  if(reg.type==='player'){
+    const p = player(reg.id);
+    if(!p){ clearMyRegistration(); return renderRegisterView(); }
+    return renderPlayerProfile(reg.id, { noBack:true, title:'ملفي الشخصي' }) +
+      `<div style="margin-top:22px;"><button class="btn secondary" onclick="logoutMyProfile()">تسجيل خروج من الملف</button></div>`;
+  }
+  if(reg.type==='coach'){
+    const c = coach(reg.id);
+    if(!c){ clearMyRegistration(); return renderRegisterView(); }
+    return renderCoachProfile(reg.id, { noBack:true, title:'ملفي الشخصي' }) +
+      `<div style="margin-top:22px;"><button class="btn secondary" onclick="logoutMyProfile()">تسجيل خروج من الملف</button></div>`;
+  }
+  return renderRegisterView();
+}
+
+/* ---------------- TEAMS ---------------- */
+
+function renderTeamsList(){
+  return `
+    <div class="page-title"><button class="back-btn" onclick="nav('home')">›</button><h1>الفرق</h1></div>
+    ${state.teams.length===0 ? `<div class="empty"><div class="big">لا توجد فرق مسجلة</div>أضف فريقاً جديداً من لوحة الإدارة</div>` : `
+    <div class="card-list">
+      ${state.teams.map(t=>`
+        <div class="card-row" onclick="nav('team','${t.id}')">
+          ${avatarImg(t.logo, t.name, true)}
+          <div class="cr-main"><div class="cr-name">${esc(t.name)}</div><div class="cr-sub">${esc(t.game)} · ${flagOf(t.flag,t.country)} ${esc(t.country)}</div></div>
+          <span class="chev">‹</span>
+        </div>
+      `).join('')}
+    </div>`}
+  `;
+}
+
+function renderTeamProfile(id){
+  const t = team(id);
+  if(!t) return `<div class="empty">الفريق غير موجود</div>`;
+  const roster = teamPlayers(t);
+  const participatedTournaments = tournamentsForTeam(t.id);
+  return `
+    <div class="page-title"><button class="back-btn" onclick="nav('teams')">›</button><h1>ملف الفريق</h1></div>
+    <div class="profile-hero">
+      ${avatarImg(t.logo, t.name, true).replace('avatar','pavatar')}
+      <h1>${esc(t.name)}</h1>
+      <div class="psub">
+        <span class="pill">${flagOf(t.flag,t.country)} ${esc(t.country)}</span>
+        <span class="pill">${esc(t.game)}</span>
+        <span class="pill status-dot${t.status!=='active'?' inactive':''}">${statusLabel(t.status)}</span>
+      </div>
+    </div>
+
+    ${(t.coachId && coach(t.coachId)) ? `<div class="divider-label">المدرب</div>
+    <div class="card-list"><div class="card-row" onclick="nav('coach','${t.coachId}')">
+      ${avatarImg(coach(t.coachId).photo, coach(t.coachId).name)}
+      <div class="cr-main"><div class="cr-name">${esc(coach(t.coachId).name)}</div><div class="cr-sub">المدرب${coach(t.coachId).experience?' · خبرة '+esc(coach(t.coachId).experience)+' سنة':''}</div></div>
+      <span class="chev">‹</span>
+    </div></div>` : ''}
+
+    ${(t.titles&&t.titles.length) ? `<div class="divider-label">الألقاب</div>
+    <div class="result-cards">
+      ${t.titles.map(ti=>`
+      <div class="result-card result-card-flat" onclick="nav('tournament','${ti.id}')">
+        <span class="result-name">${icon('trophy',14)} ${esc(ti.name)}</span>
+        <span class="result-kills-badge">بطل</span>
+      </div>`).join('')}
+    </div>` : ''}
+
+    ${roster.length ? `<div class="divider-label">اللاعبون الحاليون</div>
+    <div class="roster-strip">
+      ${roster.map(p=>`
+        <div class="roster-chip${p.id===t.captainId?' captain':''}" onclick="nav('player','${p.id}')">
+          ${avatarImg(p.photo, p.name)}
+          <div class="rname">${esc(p.name)}</div>
+          ${p.id===t.captainId?'<span class="cap-badge">★ قائد</span>':''}
+        </div>`).join('')}
+    </div>` : ''}
+
+    <div class="divider-label">إحصائيات الفريق</div>
+    <div class="stat-grid">
+      <div class="stat-cell"><div class="sv num">${t.tournamentsCount||0}</div><div class="sk">بطولات</div></div>
+      <div class="stat-cell"><div class="sv num">${t.booyahs||0}</div><div class="sk">${icon('medal',12)} البويا</div></div>
+      <div class="stat-cell"><div class="sv num">${t.totalKills||0}</div><div class="sk">مجموع القتلات</div></div>
+      <div class="stat-cell"><div class="sv num">${t.placementPoints||0}</div><div class="sk">مجموع نقاط المركز</div></div>
+      <div class="stat-cell"><div class="sv num">${t.totalPoints||0}</div><div class="sk">مجموع النقاط</div></div>
+    </div>
+
+    <div class="divider-label">البطولات المشاركة بها</div>
+    ${participatedTournaments.length ? participatedTournaments.slice().reverse().map(tr=>`
+      <div class="result-row" onclick="nav('tournament','${tr.id}')" style="cursor:pointer;">
+        <div style="display:flex;align-items:center;gap:10px;"><span>${esc(tr.name)}</span><span class="status-badge ${statusClass(tr.status)}">${statusLabel(tr.status)}</span></div>
+        <span class="num" style="color:var(--gold);font-weight:700;">${teamResultSummaryInTournament(tr, t.id)}</span>
+      </div>`).join('') : `<div class="empty">لم يشارك الفريق بأي بطولة بعد</div>`}
+  `;
+}
+
+/* ---------------- PLAYERS ---------------- */
+
+function renderPlayersList(){
+  return `
+    <div class="page-title"><button class="back-btn" onclick="nav('home')">›</button><h1>اللاعبون</h1></div>
+    ${state.players.length===0 ? `<div class="empty"><div class="big">لا يوجد لاعبون مسجلون</div>أضف لاعباً جديداً من لوحة الإدارة</div>` : `
+    <div class="card-list">
+      ${state.players.map(p=>`
+        <div class="card-row" onclick="nav('player','${p.id}')">
+          ${avatarImg(p.photo, p.name)}
+          <div class="cr-main"><div class="cr-name">${esc(p.name)}</div><div class="cr-sub">${p.currentTeamId && team(p.currentTeamId) ? esc(team(p.currentTeamId).name) : 'بدون فريق'} · ${esc(p.role||'')}${(p.currentTeamId && team(p.currentTeamId) && team(p.currentTeamId).captainId===p.id)?' · ★ قائد':''}</div></div>
+          <span class="chev">‹</span>
+        </div>
+      `).join('')}
+    </div>`}
+  `;
+}
+
+function renderPlayerProfile(id, opts){
+  opts = opts || {};
+  const p = player(id);
+  if(!p) return `<div class="empty">اللاعب غير موجود</div>`;
+  const t = p.currentTeamId ? team(p.currentTeamId) : null;
+  const participatedTournaments = tournamentsForPlayer(p.id);
+  return `
+    <div class="page-title">${opts.noBack ? '' : `<button class="back-btn" onclick="nav('players')">›</button>`}<h1>${esc(opts.title||'ملف اللاعب')}</h1></div>
+    <div class="profile-hero">
+      ${avatarImg(p.photo, p.name).replace('avatar','pavatar')}
+      <h1>${esc(p.name)}</h1>
+      <div class="psub">
+        ${t ? `<span class="pill">${esc(t.name)}</span>` : ''}
+        ${(t && t.captainId===p.id) ? `<span class="pill" style="color:var(--gold-bright);border-color:var(--gold-dim);">★ قائد الفريق</span>` : ''}
+        <span class="pill">${esc(p.role||'—')}</span>
+        <span class="pill">${flagOf(p.flag, p.nationality||'العراق')} ${esc(p.nationality||'العراق')}</span>
+      </div>
+      <div class="psub" style="margin-top:8px;">
+        <span class="pill">ID: ${esc(p.gameId||'—')}</span>
+        <span class="pill">العمر: ${esc(p.age||'—')}</span>
+      </div>
+    </div>
+
+    ${(p.titles&&p.titles.length) ? `<div class="divider-label">الألقاب</div>
+    <div class="result-cards">
+      ${p.titles.map(ti=>`
+      <div class="result-card result-card-flat" onclick="nav('tournament','${ti.id}')">
+        <span class="result-name">${icon('trophy',14)} ${esc(ti.name)}</span>
+        <span class="result-kills-badge">بطل</span>
+      </div>`).join('')}
+    </div>` : ''}
+
+    <div class="divider-label">الإحصائيات</div>
+    <div class="stat-grid">
+      <div class="stat-cell"><div class="sv num">${p.kills||0}</div><div class="sk">${icon('crosshair',12)} القتلات</div></div>
+      <div class="stat-cell"><div class="sv num">${p.matches||0}</div><div class="sk">${icon('gamepad',12)} المباريات</div></div>
+      <div class="stat-cell"><div class="sv num">${p.tournamentsCount||0}</div><div class="sk">${icon('trophy',12)} البطولات</div></div>
+      <div class="stat-cell"><div class="sv">${p.matches ? (p.kills/p.matches).toFixed(1) : '0'}</div><div class="sk">متوسط القتلات</div></div>
+      <div class="stat-cell" style="grid-column:span 2;"><div class="sv" style="font-size:13px;">${esc(p.bestResult||'—')}${p.bestTournament?' · '+esc(p.bestTournament):''}</div><div class="sk">أفضل نتيجة</div></div>
+    </div>
+
+    ${(p.career&&p.career.length) ? `<div class="divider-label">المسيرة الاحترافية</div>
+    ${p.career.map(c=>`<div class="career-row"><span class="yr num">${esc(c.year)}</span><span class="cn">${esc(c.team)}</span></div>`).join('')}` : ''}
+
+    <div class="divider-label">البطولات المشاركة بها</div>
+    ${participatedTournaments.length ? participatedTournaments.slice().reverse().map(tr=>`
+      <div class="result-row" onclick="nav('tournament','${tr.id}')" style="cursor:pointer;">
+        <div style="display:flex;align-items:center;gap:10px;"><span>${esc(tr.name)}</span><span class="status-badge ${statusClass(tr.status)}">${statusLabel(tr.status)}</span></div>
+        <span class="num" style="color:var(--gold);font-weight:700;">${playerResultSummaryInTournament(tr, p.id)}</span>
+      </div>`).join('') : `<div class="empty">لم يشارك اللاعب بأي بطولة بعد</div>`}
+  `;
+}
+
+/* ---------------- COACHES ---------------- */
+
+function renderCoachesList(){
+  return `
+    <div class="page-title"><button class="back-btn" onclick="nav('home')">›</button><h1>المدربون</h1></div>
+    ${state.coaches.length===0 ? `<div class="empty"><div class="big">لا يوجد مدربون مسجلون</div>أضف مدرباً جديداً من لوحة الإدارة</div>` : `
+    <div class="card-list">
+      ${state.coaches.map(c=>{ const ct = coachCurrentTeam(c); return `
+        <div class="card-row" onclick="nav('coach','${c.id}')">
+          ${avatarImg(c.photo, c.name)}
+          <div class="cr-main"><div class="cr-name">${esc(c.name)}</div><div class="cr-sub">${ct ? esc(ct.name) : 'بدون فريق'}</div></div>
+          <span class="chev">‹</span>
+        </div>`; }).join('')}
+    </div>`}
+  `;
+}
+
+function renderCoachProfile(id, opts){
+  opts = opts || {};
+  const c = coach(id);
+  if(!c) return `<div class="empty">المدرب غير موجود</div>`;
+  const ct = coachCurrentTeam(c);
+  return `
+    <div class="page-title">${opts.noBack ? '' : `<button class="back-btn" onclick="nav('coaches')">›</button>`}<h1>${esc(opts.title||'ملف المدرب')}</h1></div>
+
+    <div class="profile-hero">
+      ${avatarImg(c.photo, c.name).replace('avatar','pavatar')}
+      <h1>${esc(c.name)}</h1>
+      <div class="psub">
+        <span class="pill">${flagOf(c.flag, c.nationality||'العراق')} ${esc(c.nationality||'العراق')}</span>
+        <span class="pill">العمر: ${esc(c.age||'—')}</span>
+        <span class="pill">الخبرة: ${c.experience ? esc(c.experience)+' سنة' : '—'}</span>
+      </div>
+    </div>
+
+    ${ct ? `<div class="divider-label">الفريق الحالي</div>
+    <div class="card-list"><div class="card-row" onclick="nav('team','${ct.id}')">
+      ${avatarImg(ct.logo, ct.name, true)}
+      <div class="cr-main"><div class="cr-name">${esc(ct.name)}</div><div class="cr-sub">${esc(ct.game||'')} · ${flagOf(ct.flag,ct.country)} ${esc(ct.country||'')}</div></div>
+      <span class="chev">‹</span>
+    </div></div>
+    <div class="stat-grid" style="margin-top:12px;">
+      <div class="stat-cell"><div class="sv num">${ct.tournamentsCount||0}</div><div class="sk">${icon('trophy',12)} البطولات المشارك بها</div></div>
+      <div class="stat-cell"><div class="sv num">${(ct.titles||[]).length}</div><div class="sk">${icon('medal',12)} الألقاب</div></div>
+    </div>
+    ${(ct.titles&&ct.titles.length) ? `<div class="result-cards" style="margin-top:12px;">
+      ${ct.titles.map(ti=>`
+      <div class="result-card result-card-flat" onclick="nav('tournament','${ti.id}')">
+        <span class="result-name">${icon('trophy',14)} ${esc(ti.name)}</span>
+        <span class="result-kills-badge">بطل</span>
+      </div>`).join('')}
+    </div>` : ''}` : `<div class="empty">لا يدرب أي فريق حالياً</div>`}
+
+    ${(c.career&&c.career.length) ? `<div class="divider-label">الفرق التي دربها سابقاً</div>
+    ${c.career.map(x=>`<div class="career-row"><span class="yr num">${esc(x.year)}</span><span class="cn">${esc(x.team)}</span></div>`).join('')}` : ''}
+  `;
+}
+
+/* ---------------- TOURNAMENTS ---------------- */
+
+function renderTournamentsList(){
+  return `
+    <div class="page-title"><button class="back-btn" onclick="nav('home')">›</button><h1>البطولات</h1></div>
+    ${state.tournaments.length===0 ? `<div class="empty"><div class="big">لا توجد بطولات مسجلة</div>أضف بطولة جديدة من لوحة الإدارة</div>` : `
+    <div class="card-list">
+      ${state.tournaments.map(t=>`
+        <div class="card-row" onclick="nav('tournament','${t.id}')">
+          ${avatarImg(t.logo, t.name, true)}
+          <div class="cr-main">
+            <div class="cr-name">${esc(t.name)}</div>
+            <div class="cr-sub">${esc(t.game)} · ${esc(t.startDate||'')}</div>
+          </div>
+          <span class="status-badge ${statusClass(t.status)}">${statusLabel(t.status)}</span>
+        </div>
+      `).join('')}
+    </div>`}
+  `;
+}
+
+function renderTournamentProfile(id){
+  const t = tournament(id);
+  if(!t) return `<div class="empty">البطولة غير موجودة</div>`;
+  const champion = t.championTeamId ? team(t.championTeamId) : null;
+  return `
+    <div class="page-title"><button class="back-btn" onclick="nav('tournaments')">›</button><h1>ملف البطولة</h1></div>
+    <div class="profile-hero">
+      ${avatarImg(t.logo, t.name, true).replace('avatar','pavatar')}
+      <h1>${esc(t.name)}</h1>
+      <div class="psub">
+        <span class="pill">${esc(t.organizer||'—')}</span>
+        <span class="pill">${esc(t.game)}</span>
+        <span class="status-badge ${statusClass(t.status)}">${statusLabel(t.status)}</span>
+        ${t.format==='cs' ? `<span class="pill">Clash Squad</span>` : ''}
+      </div>
+      <div class="psub" style="margin-top:8px;">
+        <span class="pill">${esc(t.startDate||'')} → ${esc(t.endDate||'')}</span>
+        ${t.prize ? `<span class="pill" style="color:var(--gold-bright);">${icon('medal',12)} الجائزة: ${Number(t.prize).toLocaleString('en-US')} د.ع</span>` : ''}
+      </div>
+      ${champion ? `<div class="champion-banner" onclick="nav('team','${champion.id}')">${icon('trophy',15)} البطل: ${esc(champion.name)}</div>` : ''}
+    </div>
+    ${t.format==='cs' ? renderCsTournamentProfile(t) : renderBrTournamentProfile(t)}
+  `;
+}
+
+function renderCsTournamentProfile(t){
+  if(!t.csRounds || !t.csRounds.length) return `<div class="empty">لم يتم توليد أدوار البطولة بعد</div>`;
+  return t.csRounds.map(round=>{
+    return `
+    <div class="divider-label">${esc(round.name)}</div>
+    <div class="result-cards">
+      ${round.matches.map(m=>{
+        const teamA = m.teamAId?team(m.teamAId):null;
+        const teamB = m.teamBId?team(m.teamBId):null;
+        const w = csMatchWinner(m);
+        return `
+        <div class="cs-match-public">
+          <div class="cs-match-public-row ${w===m.teamAId?'winner':''}" ${teamA?`onclick="nav('team','${teamA.id}')"`:''}>
+            <span>${teamA?esc(teamA.name):'—'}</span><span class="num">${teamA&&teamB?(m.scoreA||0):''}</span>
+          </div>
+          <div class="cs-match-public-row ${w===m.teamBId?'winner':''}" ${teamB?`onclick="nav('team','${teamB.id}')"`:''}>
+            <span>${teamB?esc(teamB.name):'—'}</span><span class="num">${teamA&&teamB?(m.scoreB||0):''}</span>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }).join('');
+}
+
+function renderBrTournamentProfile(t){
+  const stages = getBrStages(t);
+  const participantTeams = (t.participantTeamIds||[]).map(pid=>team(pid)).filter(Boolean);
+  const participantsBlock = participantTeams.length ? `<div class="divider-label">الفرق المشاركة (${participantTeams.length})</div>
+    <div class="tag-row">${participantTeams.map(pt=>`<span class="pill" style="cursor:pointer;" onclick="nav('team','${pt.id}')">${esc(pt.name)}</span>`).join('')}</div>` : '';
+
+  if(!stages.length) return `${participantsBlock}<div class="empty">لم تُدخل نتائج البطولة بعد</div>`;
+
+  return `
+    ${participantsBlock}
+    ${stages.map((stage,si)=>{
+      const isLast = si===stages.length-1;
+      return `
+      <div class="divider-label">${esc(stage.name)}</div>
+      ${stage.groups.length===0 ? `<div class="empty">لم تُحدد مجموعات هذا الدور بعد</div>` : stage.groups.map(g=>{
+        const ranked = rankGroupTeams(g);
+        const qualifyN = stage.qualifyPerGroup||0;
+        const playerRows = (g.playerResults||[]).slice().sort((a,b)=>b.kills-a.kills);
+        return `
+        ${g.name ? `<div style="font-family:'IBM Plex Sans Arabic';font-weight:700;font-size:13px;color:var(--ink-dim);margin:10px 0 8px;">${esc(g.name)}${g.matchesCount?(' · '+g.matchesCount+' مباريات'):''}</div>` : ''}
+        ${ranked.length ? `<div class="result-cards">
+          ${ranked.map(r=>`
+          <div class="result-card" onclick="nav('team','${r.teamId}')">
+            <div class="result-card-head">
+              <span class="result-rank ${!isLast&&qualifyN&&r.rank<=qualifyN?'qualified':''}">#${r.rank}</span>
+              <span class="result-name">${esc(r.teamName)}</span>
+              ${!isLast&&qualifyN&&r.rank<=qualifyN?`<span class="result-kills-badge" style="margin-inline-start:auto;">متأهل</span>`:''}
+            </div>
+            <div class="result-mini-stats">
+              <div><span class="rv num">${r.booyahs||0}</span><span class="rk">البويا</span></div>
+              <div><span class="rv num">${r.kills||0}</span><span class="rk">القتلات</span></div>
+              <div><span class="rv num">${r.placementPoints||0}</span><span class="rk">نقاط المركز</span></div>
+              <div><span class="rv num gold">${r.totalPoints||0}</span><span class="rk">المجموع</span></div>
+            </div>
+          </div>`).join('')}
+        </div>` : `<div class="empty">لا نتائج بهذه المجموعة بعد</div>`}
+        ${playerRows.length ? `
+        <div style="font-size:11px;color:var(--ink-faint);margin:10px 0 6px;">أفضل قتلات اللاعبين بهذه المجموعة</div>
+        <div class="result-cards">
+          ${playerRows.slice(0,5).map(r=>`
+          <div class="result-card result-card-flat" onclick="nav('player','${r.playerId}')">
+            <span class="result-name">${esc(r.playerName)}</span>
+            <span class="result-kills-badge">${r.kills||0} قتلة</span>
+          </div>`).join('')}
+        </div>` : ''}
+        `;
+      }).join('')}
+      `;
+    }).join('')}
+  `;
+}
+
+/* ---------------- ADMIN: lock screen ---------------- */
+
+function renderAdminLock(){
+  return `
+    <div class="lock-screen">
+      <div class="lock-ic">${icon('lock',30)}</div>
+      <h1>دخول الإدارة</h1>
+      <p>أدخل رمز الوصول الخاص بالأدمن للمتابعة</p>
+      <input type="text" id="adminCodeInput" class="code-input" placeholder="XXXX-XXXX-XXXX" autocomplete="off">
+      <div class="error-msg" id="adminErr" style="display:none;">الرمز غير صحيح، حاول مرة أخرى</div>
+      <button class="btn" onclick="tryAdminLogin()">دخول</button>
+      <div style="margin-top:14px;"><span class="see-all" onclick="nav('home')" style="color:var(--ink-faint);">رجوع للرئيسية</span></div>
+    </div>
+  `;
+}
+
+async function tryAdminLogin(){
+  const val = document.getElementById('adminCodeInput').value.trim().toUpperCase();
+  const btn = document.getElementById('adminLoginBtn');
+  if(btn){ btn.disabled = true; }
+  let ok = false;
+  try{
+    const res = await fetch(API_BASE + '/admin-auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: val })
+    });
+    if(res.ok){
+      const { token } = await res.json();
+      adminToken = token;
+      localStorage.setItem('ic_admin_token', token);
+      ok = true;
+    }
+  }catch(e){ console.error('admin login failed', e); }
+  if(btn){ btn.disabled = false; }
+  if(ok){
+    isAdmin = true;
+    await loadApplications();
+    render();
+    showToast('تم الدخول إلى لوحة الإدارة');
+  } else {
+    document.getElementById('adminErr').style.display = 'block';
+  }
+}
+
+/* ---------------- ADMIN: dashboard ---------------- */
+
+let adminTab = 'teams';
+
+function renderAdminDashboard(){
+  return `
+    <div class="page-title">
+      <button class="back-btn" onclick="nav('home')">›</button>
+      <h1>لوحة الإدارة</h1>
+    </div>
+    <div class="admin-tabs">
+      <div class="admin-tab ${adminTab==='teams'?'active':''}" onclick="setAdminTab('teams')">الفرق</div>
+      <div class="admin-tab ${adminTab==='players'?'active':''}" onclick="setAdminTab('players')">اللاعبون</div>
+      <div class="admin-tab ${adminTab==='coaches'?'active':''}" onclick="setAdminTab('coaches')">المدربون</div>
+      <div class="admin-tab ${adminTab==='tournaments'?'active':''}" onclick="setAdminTab('tournaments')">البطولات</div>
+      <div class="admin-tab ${adminTab==='news'?'active':''}" onclick="setAdminTab('news')">الأخبار</div>
+      <div class="admin-tab ${adminTab==='applications'?'active':''}" onclick="setAdminTab('applications')">الطلبات${pendingApplicationsCount()>0?`<span class="badge-dot">${pendingApplicationsCount()}</span>`:''}</div>
+    </div>
+    ${adminTab==='teams' ? renderAdminTeamsTab() : adminTab==='players' ? renderAdminPlayersTab() : adminTab==='coaches' ? renderAdminCoachesTab() : adminTab==='applications' ? renderAdminApplicationsTab() : adminTab==='news' ? renderAdminNewsTab() : renderAdminTournamentsTab()}
+    <div style="margin-top:26px;">
+      <button class="btn secondary" onclick="logoutAdmin()">تسجيل الخروج من الإدارة</button>
+    </div>
+  `;
+}
+function setAdminTab(t){ adminTab=t; render(); }
+function logoutAdmin(){ isAdmin=false; adminToken=null; localStorage.removeItem('ic_admin_token'); nav('home'); }
+
+function renderAdminTeamsTab(){
+  return `
+    <button class="btn" style="margin-bottom:16px;" onclick="openEdit('team', null)">+ إضافة فريق جديد</button>
+    ${state.teams.length===0 ? `<div class="empty">لا توجد فرق بعد</div>` : state.teams.map(t=>`
+      <div class="admin-item-row">
+        <span class="ai-name">${esc(t.name)}</span>
+        <div class="ai-actions">
+          <button class="mini-btn" onclick="openEdit('team','${t.id}')" title="تعديل">✎</button>
+          <button class="mini-btn del" onclick="confirmDelete('teams','${t.id}','${esc(t.name)}')" title="حذف">✕</button>
+        </div>
+      </div>`).join('')}
+  `;
+}
+function renderAdminPlayersTab(){
+  return `
+    <button class="btn" style="margin-bottom:16px;" onclick="openEdit('player', null)">+ إضافة لاعب جديد</button>
+    ${state.players.length===0 ? `<div class="empty">لا يوجد لاعبون بعد</div>` : state.players.map(p=>`
+      <div class="admin-item-row">
+        <span class="ai-name">${esc(p.name)}${p.registrationCode?` <span style="color:var(--ink-faint);font-size:11px;">#${esc(p.registrationCode)}</span>`:''}</span>
+        <div class="ai-actions">
+          <button class="mini-btn" onclick="openEdit('player','${p.id}')" title="تعديل">✎</button>
+          <button class="mini-btn del" onclick="confirmDelete('players','${p.id}','${esc(p.name)}')" title="حذف">✕</button>
+        </div>
+      </div>`).join('')}
+  `;
+}
+function renderAdminCoachesTab(){
+  return `
+    <button class="btn" style="margin-bottom:16px;" onclick="openEdit('coach', null)">+ إضافة مدرب جديد</button>
+    ${state.coaches.length===0 ? `<div class="empty">لا يوجد مدربون بعد</div>` : state.coaches.map(c=>`
+      <div class="admin-item-row">
+        <span class="ai-name">${esc(c.name)}${c.registrationCode?` <span style="color:var(--ink-faint);font-size:11px;">#${esc(c.registrationCode)}</span>`:''}</span>
+        <div class="ai-actions">
+          <button class="mini-btn" onclick="openEdit('coach','${c.id}')" title="تعديل">✎</button>
+          <button class="mini-btn del" onclick="confirmDelete('coaches','${c.id}','${esc(c.name)}')" title="حذف">✕</button>
+        </div>
+      </div>`).join('')}
+  `;
+}
+function renderAdminTournamentsTab(){
+  return `
+    <button class="btn" style="margin-bottom:16px;" onclick="openEdit('tournament', null)">+ إضافة بطولة جديدة</button>
+    ${state.tournaments.length===0 ? `<div class="empty">لا توجد بطولات بعد</div>` : state.tournaments.map(t=>`
+      <div class="admin-item-row">
+        <span class="ai-name">${esc(t.name)} <span style="color:var(--ink-faint);font-size:11px;">(${statusLabel(t.status)})</span></span>
+        <div class="ai-actions">
+          <button class="mini-btn" onclick="openEdit('tournament','${t.id}')" title="تعديل/نتائج">✎</button>
+          <button class="mini-btn del" onclick="confirmDelete('tournaments','${t.id}','${esc(t.name)}')" title="حذف">✕</button>
+        </div>
+      </div>`).join('')}
+  `;
+}
+function renderAdminNewsTab(){
+  const items = newsSorted();
+  return `
+    <button class="btn" style="margin-bottom:16px;" onclick="openEdit('news', null)">+ إضافة خبر جديد</button>
+    ${items.length===0 ? `<div class="empty">لا توجد أخبار بعد</div>` : items.map(n=>`
+      <div class="admin-item-row">
+        <span class="ai-name">${esc(n.title)} <span style="color:var(--ink-faint);font-size:11px;">${esc(formatNewsDate(n.publishedAt))}</span></span>
+        <div class="ai-actions">
+          <button class="mini-btn" onclick="openEdit('news','${n.id}')" title="تعديل">✎</button>
+          <button class="mini-btn del" onclick="confirmDelete('news','${n.id}','${esc(n.title)}')" title="حذف">✕</button>
+        </div>
+      </div>`).join('')}
+  `;
+}
+
+let pendingDelete = null;
+
+function confirmDelete(collection, id, name){
+  pendingDelete = { collection, id, name };
+  renderDeleteModal();
+}
+
+function renderDeleteModal(){
+  let modal = document.getElementById('deleteModal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'deleteModal';
+    modal.style.cssText = 'position:fixed;inset:0;z-index:200;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.55);padding-bottom:env(safe-area-inset-bottom,0px);';
+    document.body.appendChild(modal);
+  }
+  if(!pendingDelete){ modal.remove(); return; }
+  modal.innerHTML = `
+    <div style="background:var(--bg-card);border:1px solid var(--line);border-top:2px solid var(--danger);border-radius:8px 8px 0 0;width:100%;max-width:640px;padding:22px 20px;">
+      <div style="font-family:'IBM Plex Sans Arabic';font-weight:800;font-size:16px;margin-bottom:8px;">تأكيد الحذف</div>
+      <div style="color:var(--ink-dim);font-size:13.5px;margin-bottom:20px;">هل أنت متأكد من حذف "${esc(pendingDelete.name)}"؟ لا يمكن التراجع عن هذا الإجراء.</div>
+      <button class="btn danger" style="margin-bottom:10px;" onclick="doConfirmedDelete()">حذف نهائياً</button>
+      <button class="btn secondary" onclick="cancelDelete()">إلغاء</button>
+    </div>`;
+}
+
+function cancelDelete(){ pendingDelete = null; renderDeleteModal(); }
+
+async function doConfirmedDelete(){
+  if(!pendingDelete) return;
+  const { collection, id } = pendingDelete;
+  await deleteDoc(collection, id);
+  if(collection==='tournaments'){
+    await recomputeStats();
+  }
+  if(collection==='players'){
+    for(let i=0;i<state.teams.length;i++){
+      const t0 = state.teams[i];
+      if((t0.playerIds||[]).includes(id) || t0.captainId===id){
+        const t = clone(t0);
+        t.playerIds = (t.playerIds||[]).filter(pid=>pid!==id);
+        if(t.captainId===id) t.captainId = null;
+        state.teams[i] = t;
+        await persistDoc('teams', t);
+      }
+    }
+    for(let i=0;i<state.tournaments.length;i++){
+      const tr0 = state.tournaments[i];
+      if((tr0.playerResults||[]).some(r=>r.playerId===id)){
+        const tr = clone(tr0);
+        tr.playerResults = (tr.playerResults||[]).filter(r=>r.playerId!==id);
+        state.tournaments[i] = tr;
+        await persistDoc('tournaments', tr);
+      }
+    }
+    await recomputeStats();
+  }
+  if(collection==='coaches'){
+    for(let i=0;i<state.teams.length;i++){
+      if(state.teams[i].coachId===id){
+        const t = clone(state.teams[i]);
+        t.coachId = null;
+        state.teams[i] = t;
+        await persistDoc('teams', t);
+      }
+    }
+  }
+  if(collection==='teams'){
+    // detach players who belonged to this team
+    for(let i=0;i<state.players.length;i++){
+      if(state.players[i].currentTeamId===id){
+        const p = clone(state.players[i]);
+        p.currentTeamId = null;
+        state.players[i] = p;
+        await persistDoc('players', p);
+      }
+    }
+    // strip this team from any tournament it was registered in / had results in
+    for(let i=0;i<state.tournaments.length;i++){
+      const tr0 = state.tournaments[i];
+      const touched = (tr0.participantTeamIds||[]).includes(id) || (tr0.teamResults||[]).some(r=>r.teamId===id);
+      if(touched){
+        const tr = clone(tr0);
+        tr.participantTeamIds = (tr.participantTeamIds||[]).filter(tid=>tid!==id);
+        tr.teamResults = (tr.teamResults||[]).filter(r=>r.teamId!==id);
+        state.tournaments[i] = tr;
+        await persistDoc('tournaments', tr);
+      }
+    }
+    await recomputeStats();
+  }
+  pendingDelete = null;
+  renderDeleteModal();
+  showToast('تم الحذف');
+  render();
+}
+
+/* ---------------- ADMIN: edit forms ---------------- */
+
+let editCtx = { type:null, id:null, draft:null };
+
+function openEdit(type, id){
+  let draft;
+  if(type==='team'){
+    draft = id ? clone(team(id)) : { id: uid('team'), name:'', logo:'', country:'العراق', flag:'🇮🇶', game:'Free Fire', registeredDate:'', status:'active', captainId:null, coachId:null, playerIds:[], tournamentsCount:0, booyahs:0, totalKills:0, placementPoints:0, totalPoints:0 };
+  } else if(type==='coach'){
+    draft = id ? clone(coach(id)) : { id: uid('coach'), name:'', photo:'', age:'', nationality:'العراق', flag:'🇮🇶', experience:'', career:[] };
+    draft.career = draft.career||[];
+  } else if(type==='player'){
+    draft = id ? clone(player(id)) : { id: uid('plr'), name:'', photo:'', role:'', gameId:'', age:'', nationality:'العراق', flag:'🇮🇶', currentTeamId:null, registeredDate:'', status:'active', kills:0, tournamentsCount:0, matches:0, bestResult:'', bestTournament:'', career:[] };
+  } else if(type==='tournament'){
+    if(id){
+      draft = clone(tournament(id));
+      if(!draft.format) draft.format = 'br';
+      draft.participantTeamIds = draft.participantTeamIds||[];
+      if(draft.format==='cs'){ draft.csRounds = draft.csRounds||[]; draft.csSquadsCount = draft.csSquadsCount||8; }
+      if(draft.format==='br'){ draft.brStages = getBrStages(draft); }
+    } else {
+      draft = { id: uid('trn'), name:'', logo:'', organizer:'Iraq Community', game:'Free Fire', startDate:'', endDate:'', pointsSystem:'', status:'upcoming', format:'', participantTeamIds:[], brStages:[], csSquadsCount:8, csRounds:[] };
+    }
+  } else if(type==='news'){
+    draft = id ? clone(state.news.find(n=>n.id===id)) : { id: uid('news'), title:'', image:'', description:'', publishedAt: new Date().toISOString().slice(0,10) };
+  }
+  editCtx = { type, id, draft };
+  route = { name:'admin-edit' };
+  render();
+  window.scrollTo(0,0);
+}
+
+function renderAdminEditForm(){
+  const { type, draft } = editCtx;
+  if(type==='team') return renderTeamForm(draft);
+  if(type==='player') return renderPlayerForm(draft);
+  if(type==='coach') return renderCoachForm(draft);
+  if(type==='tournament') return renderTournamentForm(draft);
+  if(type==='news') return renderNewsForm(draft);
+  return '';
+}
+
+function backToAdmin(){ route = {name:'admin'}; render(); }
+
+/* ---- team form ---- */
+function renderTeamForm(d){
+  const captainOptions = teamPlayers(d).length ? teamPlayers(d) : (d.playerIds||[]).map(id=>player(id)).filter(Boolean);
+  return `
+    <div class="page-title"><button class="back-btn" onclick="backToAdmin()">›</button><h1>${d.name?'تعديل فريق':'فريق جديد'}</h1></div>
+    <div class="field"><label>اسم الفريق</label><input id="f_name" value="${esc(d.name)}" placeholder="مثال: URUK ESPORTS"></div>
+    <div class="field">
+      <label>شعار الفريق</label>
+      <div style="display:flex;align-items:center;gap:12px;">
+        ${avatarImg(d.logo, d.name, true)}
+        <div style="flex:1;">
+          <input type="file" accept="image/*" id="f_logo_file" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none;" onchange="uploadImageField(this,'logo',syncTeamDraftFromDom)">
+          <label for="f_logo_file" class="btn secondary small" style="cursor:pointer;">${icon('camera',15)} اختر صورة</label>
+          <div id="f_logo_file_status" style="font-size:11px;color:var(--ink-faint);margin-top:4px;"></div>
+          <input id="f_logo_url" value="${esc((d.logo||'').startsWith('http')?d.logo:'')}" placeholder="أو الصق رابط الصورة" style="margin-top:8px;" onchange="syncTeamDraftFromDom(); editCtx.draft.logo=this.value.trim(); render();">
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <input id="f_logo_url" placeholder="أو الصق رابط صورة..." style="flex:1;">
+            <button class="btn secondary small" onclick="setImageFromUrl('f_logo_url','logo',syncTeamDraftFromDom)">استخدام</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>الدولة</label><input id="f_country" value="${esc(d.country)}"></div>
+      <div class="field"><label>اللعبة</label><input id="f_game" value="${esc(d.game)}" placeholder="Free Fire"></div>
+    </div>
+    ${flagFieldHtml(d, d.country, 'f_flag', 'syncTeamDraftFromDom', 'علم الدولة')}
+    <div class="field-row">
+      <div class="field"><label>تاريخ التسجيل</label><input id="f_regdate" type="date" value="${esc(d.registeredDate)}"></div>
+      <div class="field"><label>حالة الفريق</label>
+        <select id="f_status"><option value="active" ${d.status==='active'?'selected':''}>نشط</option><option value="inactive" ${d.status==='inactive'?'selected':''}>غير نشط</option></select>
+      </div>
+    </div>
+    <div class="field"><label>المدرب</label>
+      <select id="f_coach">
+        <option value="">بدون مدرب</option>
+        ${state.coaches.map(c=>`<option value="${c.id}" ${d.coachId===c.id?'selected':''}>${esc(c.name)}</option>`).join('')}
+      </select>
+      ${state.coaches.length? '' : '<div style="font-size:11px;color:var(--ink-faint);margin-top:4px;">أضف مدرب أول من تبويب المدربون.</div>'}
+    </div>
+    ${teamPlayers(d).length ? `<div class="field"><label>الكابتن</label>
+      <select id="f_captain">
+        <option value="">بدون تحديد</option>
+        ${teamPlayers(d).map(p=>`<option value="${p.id}" ${d.captainId===p.id?'selected':''}>${esc(p.name)}</option>`).join('')}
+      </select>
+    </div>` : `<div class="field"><label>الكابتن</label><div style="font-size:12px;color:var(--ink-faint);">ما فيه لاعبين بالفريق. اختر الفريق من إعدادات اللاعب أول، وبعدها يظهر اختيار الكابتن هنا.</div></div>`}
+    <div class="empty" style="margin-top:6px;">إحصائيات الفريق (البطولات، النقاط، القتلات...) تُحسب تلقائياً من نتائج البطولات، ما تحتاج تدخلها هنا.</div>
+    <button class="btn" style="margin-top:14px;" onclick="saveTeamForm()">حفظ الفريق</button>
+    <div style="height:10px;"></div>
+    <button class="btn secondary" onclick="backToAdmin()">إلغاء</button>
+  `;
+}
+function syncTeamDraftFromDom(){
+  const d = editCtx.draft;
+  const g = id => document.getElementById(id);
+  if(g('f_name')) d.name = g('f_name').value;
+  if(g('f_country')) d.country = g('f_country').value;
+  if(g('f_flag')) d.flag = g('f_flag').value.trim();
+  if(g('f_coach')) d.coachId = g('f_coach').value || null;
+  if(g('f_game')) d.game = g('f_game').value;
+  if(g('f_regdate')) d.registeredDate = g('f_regdate').value;
+  if(g('f_status')) d.status = g('f_status').value;
+  if(g('f_captain')) d.captainId = g('f_captain').value || null;
+}
+async function saveTeamForm(){
+  const d = editCtx.draft;
+  d.name = document.getElementById('f_name').value.trim();
+  if(!d.name){ showToast('الرجاء إدخال اسم الفريق'); return; }
+  d.country = document.getElementById('f_country').value.trim();
+  d.flag = document.getElementById('f_flag').value.trim();
+  d.game = document.getElementById('f_game').value.trim();
+  d.registeredDate = document.getElementById('f_regdate').value;
+  d.status = document.getElementById('f_status').value;
+  const capEl = document.getElementById('f_captain');
+  d.captainId = capEl ? (capEl.value || null) : (d.captainId||null);
+  const coachEl = document.getElementById('f_coach');
+  d.coachId = coachEl ? (coachEl.value || null) : (d.coachId||null);
+  // a coach trains one team at a time: detach him from any other team
+  if(d.coachId){
+    for(let i=0;i<state.teams.length;i++){
+      if(state.teams[i].id!==d.id && state.teams[i].coachId===d.coachId){
+        const o = clone(state.teams[i]); o.coachId = null; state.teams[i] = o; await persistDoc('teams', o);
+      }
+    }
+  }
+  await persistDoc('teams', d);
+  showToast('تم حفظ الفريق');
+  backToAdmin();
+}
+
+/* ---- coach form ---- */
+function renderCoachForm(d){
+  const careerHtml = (d.career||[]).map((c,i)=>`
+    <div class="results-editor-row" style="grid-template-columns:1fr 2fr auto;">
+      <input value="${esc(c.year)}" placeholder="السنة" oninput="editCtx.draft.career[${i}].year=this.value">
+      <input value="${esc(c.team)}" placeholder="اسم الفريق" oninput="editCtx.draft.career[${i}].team=this.value">
+      <button class="mini-btn del" onclick="removeCoachCareerRow(${i})">✕</button>
+    </div>`).join('');
+  return `
+    <div class="page-title"><button class="back-btn" onclick="backToAdmin()">›</button><h1>${d.name?'تعديل مدرب':'مدرب جديد'}</h1></div>
+    <div class="field"><label>اسم المدرب</label><input id="f_name" value="${esc(d.name)}" placeholder="اسم المدرب"></div>
+    <div class="field">
+      <label>صورة المدرب</label>
+      <div style="display:flex;align-items:center;gap:12px;">
+        ${avatarImg(d.photo, d.name)}
+        <div style="flex:1;">
+          <input type="file" accept="image/*" id="f_coach_photo_file" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none;" onchange="uploadImageField(this,'photo',syncCoachDraftFromDom)">
+          <label for="f_coach_photo_file" class="btn secondary small" style="cursor:pointer;">${icon('camera',15)} اختر صورة</label>
+          <div id="f_coach_photo_file_status" style="font-size:11px;color:var(--ink-faint);margin-top:4px;"></div>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <input id="f_coach_photo_url" placeholder="أو الصق رابط صورة..." style="flex:1;">
+            <button class="btn secondary small" onclick="setImageFromUrl('f_coach_photo_url','photo',syncCoachDraftFromDom)">استخدام</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>العمر</label><input id="f_age" type="number" value="${esc(d.age)}"></div>
+      <div class="field"><label>الخبرة (سنوات)</label><input id="f_exp" type="number" value="${esc(d.experience)}"></div>
+    </div>
+    <div class="field"><label>الدولة</label><input id="f_nat" value="${esc(d.nationality)}"></div>
+    ${flagFieldHtml(d, d.nationality, 'f_flag', 'syncCoachDraftFromDom', 'علم الدولة')}
+    <div class="empty" style="margin:6px 0 4px;">الفريق الحالي للمدرب يتحدد من إعدادات الفريق (خانة المدرب)، وإحصائياته تُحسب تلقائياً.</div>
+
+    <div class="divider-label">رمز تسجيل البروفايل</div>
+    <div class="field">
+      <label>Registration Code</label>
+      <input id="f_regcode" value="${esc(d.registrationCode||'')}" placeholder="مثال: IC-A1B2C3" style="text-transform:uppercase;">
+    </div>
+    <button class="btn secondary small" onclick="generateRegCode('f_regcode')">توليد رمز عشوائي</button>
+    <div style="font-size:11px;color:var(--ink-faint);margin-top:6px;">يستخدمه المدرب لفتح ملفه الشخصي من صفحة البروفايل.</div>
+
+    <div class="divider-label">الفرق التي دربها سابقاً</div>
+    <div id="careerList">${careerHtml}</div>
+    <button class="btn secondary small" onclick="addCoachCareerRow()">+ إضافة فريق سابق</button>
+
+    <div style="height:20px;"></div>
+    <button class="btn" onclick="saveCoachForm()">حفظ المدرب</button>
+    <div style="height:10px;"></div>
+    <button class="btn secondary" onclick="backToAdmin()">إلغاء</button>
+  `;
+}
+function syncCoachDraftFromDom(){
+  const d = editCtx.draft;
+  const g = id => document.getElementById(id);
+  if(g('f_name')) d.name = g('f_name').value;
+  if(g('f_age')) d.age = g('f_age').value;
+  if(g('f_exp')) d.experience = g('f_exp').value;
+  if(g('f_nat')) d.nationality = g('f_nat').value;
+  if(g('f_flag')) d.flag = g('f_flag').value.trim();
+  if(g('f_regcode')) d.registrationCode = g('f_regcode').value.trim().toUpperCase();
+}
+function addCoachCareerRow(){ syncCoachDraftFromDom(); editCtx.draft.career = editCtx.draft.career||[]; editCtx.draft.career.push({year:'',team:''}); render(); }
+function removeCoachCareerRow(i){ syncCoachDraftFromDom(); editCtx.draft.career.splice(i,1); render(); }
+async function saveCoachForm(){
+  const d = editCtx.draft;
+  d.name = document.getElementById('f_name').value.trim();
+  if(!d.name){ showToast('الرجاء إدخال اسم المدرب'); return; }
+  d.age = document.getElementById('f_age').value;
+  d.experience = document.getElementById('f_exp').value;
+  d.nationality = document.getElementById('f_nat').value.trim();
+  d.flag = document.getElementById('f_flag').value.trim();
+  d.registrationCode = document.getElementById('f_regcode').value.trim().toUpperCase();
+  d.career = (d.career||[]).filter(c=>(c.year||'').trim() || (c.team||'').trim());
+  await persistDoc('coaches', d);
+  showToast('تم حفظ المدرب');
+  backToAdmin();
+}
+
+/* ---- news form ---- */
+function renderNewsForm(d){
+  return `
+    <div class="page-title"><button class="back-btn" onclick="backToAdmin()">›</button><h1>${d.title?'تعديل خبر':'خبر جديد'}</h1></div>
+    <div class="field"><label>عنوان الخبر</label><input id="f_news_title" value="${esc(d.title)}" placeholder="عنوان الخبر"></div>
+    <div class="field">
+      <label>صورة الخبر (1:1)</label>
+      <div style="display:flex;align-items:center;gap:12px;">
+        ${d.image ? `<img src="${esc(d.image)}" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:12px;border:1px solid var(--line);">` : `<div class="avatar square" style="width:64px;height:64px;">?</div>`}
+        <div style="flex:1;">
+          <input type="file" accept="image/*" id="f_news_img_file" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none;" onchange="uploadImageField(this,'image',syncNewsDraftFromDom)">
+          <label for="f_news_img_file" class="btn secondary small" style="cursor:pointer;">${icon('camera',15)} اختر صورة</label>
+          <div id="f_news_img_file_status" style="font-size:11px;color:var(--ink-faint);margin-top:4px;"></div>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <input id="f_news_img_url" placeholder="أو الصق رابط صورة..." style="flex:1;">
+            <button class="btn secondary small" onclick="setImageFromUrl('f_news_img_url','image',syncNewsDraftFromDom)">استخدام</button>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--ink-faint);margin-top:6px;">يفضل استخدام صورة مربعة (نسبة 1:1) لأفضل مظهر في البطاقة.</div>
+    </div>
+    <div class="field"><label>وصف الخبر</label><textarea id="f_news_desc" rows="5" placeholder="تفاصيل الخبر...">${esc(d.description)}</textarea></div>
+    <div class="field"><label>تاريخ النشر</label><input id="f_news_date" type="date" value="${esc(d.publishedAt||'')}"></div>
+
+    <div style="height:20px;"></div>
+    <button class="btn" onclick="saveNewsForm()">حفظ الخبر</button>
+    <div style="height:10px;"></div>
+    <button class="btn secondary" onclick="backToAdmin()">إلغاء</button>
+  `;
+}
+function syncNewsDraftFromDom(){
+  const d = editCtx.draft;
+  const g = id => document.getElementById(id);
+  if(g('f_news_title')) d.title = g('f_news_title').value;
+  if(g('f_news_desc')) d.description = g('f_news_desc').value;
+  if(g('f_news_date')) d.publishedAt = g('f_news_date').value;
+}
+async function saveNewsForm(){
+  const d = editCtx.draft;
+  d.title = document.getElementById('f_news_title').value.trim();
+  if(!d.title){ showToast('الرجاء إدخال عنوان الخبر'); return; }
+  d.description = document.getElementById('f_news_desc').value.trim();
+  d.publishedAt = document.getElementById('f_news_date').value || new Date().toISOString().slice(0,10);
+  await persistDoc('news', d);
+  showToast('تم حفظ الخبر');
+  backToAdmin();
+}
+
+/* ---- player form ---- */
+function renderPlayerForm(d){
+  const teamOpts = state.teams.map(t=>`<option value="${t.id}" ${d.currentTeamId===t.id?'selected':''}>${esc(t.name)}</option>`).join('');
+  const careerHtml = (d.career||[]).map((c,i)=>`
+    <div class="results-editor-row" style="grid-template-columns:1fr 2fr auto;">
+      <input value="${esc(c.year)}" placeholder="السنة" oninput="editCtx.draft.career[${i}].year=this.value">
+      <input value="${esc(c.team)}" placeholder="اسم الفريق" oninput="editCtx.draft.career[${i}].team=this.value">
+      <button class="mini-btn del" onclick="removeCareerRow(${i})">✕</button>
+    </div>`).join('');
+  return `
+    <div class="page-title"><button class="back-btn" onclick="backToAdmin()">›</button><h1>${d.name?'تعديل لاعب':'لاعب جديد'}</h1></div>
+    <div class="field"><label>اسم اللاعب</label><input id="f_name" value="${esc(d.name)}" placeholder="مثال: HAMAD"></div>
+    <div class="field">
+      <label>صورة اللاعب</label>
+      <div style="display:flex;align-items:center;gap:12px;">
+        ${avatarImg(d.photo, d.name)}
+        <div style="flex:1;">
+          <input type="file" accept="image/*" id="f_photo_file" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none;" onchange="uploadImageField(this,'photo',syncPlayerDraftFromDom)">
+          <label for="f_photo_file" class="btn secondary small" style="cursor:pointer;">${icon('camera',15)} اختر صورة</label>
+          <div id="f_photo_file_status" style="font-size:11px;color:var(--ink-faint);margin-top:4px;"></div>
+          <input id="f_photo_url" value="${esc((d.photo||'').startsWith('http')?d.photo:'')}" placeholder="أو الصق رابط الصورة" style="margin-top:8px;" onchange="syncPlayerDraftFromDom(); editCtx.draft.photo=this.value.trim(); render();">
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <input id="f_photo_url" placeholder="أو الصق رابط صورة..." style="flex:1;">
+            <button class="btn secondary small" onclick="setImageFromUrl('f_photo_url','photo',syncPlayerDraftFromDom)">استخدام</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>المركز</label><input id="f_role" value="${esc(d.role)}" placeholder="Fragger / Support"></div>
+      <div class="field"><label>ID اللاعب</label><input id="f_gameid" value="${esc(d.gameId)}"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>العمر</label><input id="f_age" type="number" value="${esc(d.age)}"></div>
+      <div class="field"><label>الجنسية</label><input id="f_nat" value="${esc(d.nationality)}"></div>
+    </div>
+    ${flagFieldHtml(d, d.nationality, 'f_flag', 'syncPlayerDraftFromDom', 'علم الجنسية')}
+    <div class="field"><label>الفريق الحالي</label><select id="f_team"><option value="">بدون فريق</option>${teamOpts}</select></div>
+    <div class="field-row">
+      <div class="field"><label>تاريخ التسجيل</label><input id="f_regdate" type="date" value="${esc(d.registeredDate)}"></div>
+      <div class="field"><label>الحالة</label><select id="f_status"><option value="active" ${d.status==='active'?'selected':''}>نشط</option><option value="inactive" ${d.status==='inactive'?'selected':''}>غير نشط</option></select></div>
+    </div>
+    <div class="empty" style="margin:6px 0 4px;">إحصائيات اللاعب (القتلات، المباريات، أفضل نتيجة...) تُحسب تلقائياً من نتائج البطولات، ما تحتاج تدخلها هنا.</div>
+
+    <div class="divider-label">رمز تسجيل البروفايل</div>
+    <div class="field">
+      <label>Registration Code</label>
+      <input id="f_regcode" value="${esc(d.registrationCode||'')}" placeholder="مثال: IC-A1B2C3" style="text-transform:uppercase;">
+    </div>
+    <button class="btn secondary small" onclick="generateRegCode('f_regcode')">توليد رمز عشوائي</button>
+    <div style="font-size:11px;color:var(--ink-faint);margin-top:6px;">يستخدمه اللاعب لفتح ملفه الشخصي من صفحة البروفايل.</div>
+
+    <div class="divider-label">المسيرة الاحترافية (Career History)</div>
+    <div id="careerList">${careerHtml}</div>
+    <button class="btn secondary small" onclick="addCareerRow()">+ إضافة سنة</button>
+
+    <div style="height:20px;"></div>
+    <button class="btn" onclick="savePlayerForm()">حفظ اللاعب</button>
+    <div style="height:10px;"></div>
+    <button class="btn secondary" onclick="backToAdmin()">إلغاء</button>
+  `;
+}
+/* Uploads a picked file via the `assets` capability and writes the returned
+   URL onto the given draft field. `syncFn` (if given) saves any unsynced
+   text the admin already typed before we re-render the form. */
+async function uploadImageField(input, field, syncFn){
+  const file = input.files && input.files[0];
+  if(!file) return;
+  if(syncFn) syncFn();
+  const statusEl = document.getElementById(input.id + '_status');
+  if(statusEl) statusEl.textContent = 'جاري رفع الصورة...';
+  try{
+    if(!assetsCap){ showToast('رفع الصور غير متاح'); if(statusEl) statusEl.textContent=''; return; }
+    const res = await assetsCap.upload(file);
+    editCtx.draft[field] = res.url;
+    showToast('تم رفع الصورة بنجاح');
+  }catch(e){
+    console.error('upload failed', e);
+    showToast('تعذر رفع الصورة: ' + (e && e.message ? e.message : 'خطأ غير معروف'));
+  }
+  render();
+}
+
+/* Sets an image field from a pasted URL instead of an uploaded file. */
+function setImageFromUrl(urlInputId, field, syncFn){
+  const urlEl = document.getElementById(urlInputId);
+  if(!urlEl) return;
+  const url = urlEl.value.trim();
+  if(!url){ showToast('الصق رابط الصورة أولاً'); return; }
+  if(syncFn) syncFn();
+  editCtx.draft[field] = url;
+  showToast('تم استخدام رابط الصورة');
+  render();
+}
+
+function syncPlayerDraftFromDom(){
+  const d = editCtx.draft;
+  const g = id => document.getElementById(id);
+  if(g('f_name')) d.name = g('f_name').value;
+  if(g('f_photo')) d.photo = g('f_photo').value;
+  if(g('f_role')) d.role = g('f_role').value;
+  if(g('f_gameid')) d.gameId = g('f_gameid').value;
+  if(g('f_age')) d.age = g('f_age').value;
+  if(g('f_nat')) d.nationality = g('f_nat').value;
+  if(g('f_flag')) d.flag = g('f_flag').value.trim();
+  if(g('f_team')) d.currentTeamId = g('f_team').value || null;
+  if(g('f_regdate')) d.registeredDate = g('f_regdate').value;
+  if(g('f_status')) d.status = g('f_status').value;
+  if(g('f_regcode')) d.registrationCode = g('f_regcode').value.trim().toUpperCase();
+}
+/* Fills a registration-code input with a fresh random code. */
+function generateRegCode(inputId){
+  const el = document.getElementById(inputId);
+  if(el) el.value = 'IC-' + Math.random().toString(36).slice(2,8).toUpperCase();
+}
+function addCareerRow(){ syncPlayerDraftFromDom(); editCtx.draft.career = editCtx.draft.career||[]; editCtx.draft.career.push({year:'',team:''}); render(); }
+function removeCareerRow(i){ syncPlayerDraftFromDom(); editCtx.draft.career.splice(i,1); render(); }
+async function savePlayerForm(){
+  const d = editCtx.draft;
+  d.name = document.getElementById('f_name').value.trim();
+  if(!d.name){ showToast('الرجاء إدخال اسم اللاعب'); return; }
+  d.role = document.getElementById('f_role').value.trim();
+  d.gameId = document.getElementById('f_gameid').value.trim();
+  d.age = document.getElementById('f_age').value;
+  d.nationality = document.getElementById('f_nat').value.trim();
+  d.flag = document.getElementById('f_flag').value.trim();
+  const newTeamId = document.getElementById('f_team').value || null;
+  d.registeredDate = document.getElementById('f_regdate').value;
+  d.status = document.getElementById('f_status').value;
+  d.registrationCode = document.getElementById('f_regcode').value.trim().toUpperCase();
+
+  // maintain roster linkage: remove from old team, add to new team
+  if(d.currentTeamId && d.currentTeamId !== newTeamId){
+    const old = clone(team(d.currentTeamId));
+    if(old){ old.playerIds = (old.playerIds||[]).filter(id=>id!==d.id); await persistDoc('teams', old); }
+  }
+  if(newTeamId){
+    const nt = clone(team(newTeamId));
+    if(nt && !(nt.playerIds||[]).includes(d.id)){ nt.playerIds = [...(nt.playerIds||[]), d.id]; await persistDoc('teams', nt); }
+  }
+  d.currentTeamId = newTeamId;
+
+  await persistDoc('players', d);
+  showToast('تم حفظ اللاعب');
+  backToAdmin();
+}
+
+/* ---- tournament form ---- */
+function numAttrs(updateJs){
+  return `type="text" inputmode="numeric" pattern="[0-9]*" oninput="this.value=this.value.replace(/[^0-9]/g,''); ${updateJs}"`;
+}
+
+function renderTournamentForm(d){
+  if(!d.format){
+    return `
+    <div class="page-title"><button class="back-btn" onclick="backToAdmin()">›</button><h1>بطولة جديدة</h1></div>
+    <div class="divider-label">اختر نظام البطولة</div>
+    <div class="format-pick" onclick="chooseFormat('br')">
+      <div class="lbl">Battle Royale</div>
+      <div class="sub">نظام المجموعات والنقاط — حتى 12 سكواد أو أكثر</div>
+    </div>
+    <div class="format-pick" onclick="chooseFormat('cs')">
+      <div class="lbl">Clash Squad</div>
+      <div class="sub">نظام إقصاء مباشر 4×4 — من دور الـ16 إلى النهائي</div>
+    </div>
+    <button class="btn secondary" style="margin-top:14px;" onclick="backToAdmin()">إلغاء</button>
+    `;
+  }
+  if(d.format==='cs') return renderCsForm(d);
+  return renderBrForm(d);
+}
+function chooseFormat(fmt){
+  editCtx.draft.format = fmt;
+  if(fmt==='cs'){ editCtx.draft.csSquadsCount = editCtx.draft.csSquadsCount||8; editCtx.draft.csRounds = editCtx.draft.csRounds||[]; }
+  render();
+}
+
+function renderBrForm(d){
+  d.participantTeamIds = d.participantTeamIds || [];
+  d.brStages = d.brStages && d.brStages.length ? d.brStages : (d.brStages = getBrStages(d));
+  const participantTeams = d.participantTeamIds.map(id=>team(id)).filter(Boolean);
+  const availableToAdd = state.teams.filter(t=>!d.participantTeamIds.includes(t.id));
+
+  return `
+    <div class="page-title"><button class="back-btn" onclick="backToAdmin()">›</button><h1>${d.name?'تعديل بطولة':'بطولة جديدة'}</h1></div>
+    <span class="format-tag">Battle Royale</span>
+    <div class="field"><label>اسم البطولة</label><input id="f_name" value="${esc(d.name)}" placeholder="مثال: IRAQ MASTERS S2"></div>
+    <div class="field">
+      <label>شعار البطولة</label>
+      <div style="display:flex;align-items:center;gap:12px;">
+        ${avatarImg(d.logo, d.name, true)}
+        <div style="flex:1;">
+          <input type="file" accept="image/*" id="f_trn_logo_file" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none;" onchange="uploadImageField(this,'logo',syncTournamentDraftFromDom)">
+          <label for="f_trn_logo_file" class="btn secondary small" style="cursor:pointer;">${icon('camera',15)} اختر صورة</label>
+          <div id="f_trn_logo_file_status" style="font-size:11px;color:var(--ink-faint);margin-top:4px;"></div>
+          <input id="f_trn_logo_url" value="${esc((d.logo||'').startsWith('http')?d.logo:'')}" placeholder="أو الصق رابط الصورة" style="margin-top:8px;" onchange="syncTournamentDraftFromDom(); editCtx.draft.logo=this.value.trim(); render();">
+        </div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>المنظم</label><input id="f_org" value="${esc(d.organizer)}"></div>
+      <div class="field"><label>اللعبة</label><input id="f_game" value="${esc(d.game)}" placeholder="Free Fire"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>تاريخ البداية</label><input id="f_start" type="date" value="${esc(d.startDate)}"></div>
+      <div class="field"><label>تاريخ النهاية</label><input id="f_end" type="date" value="${esc(d.endDate)}"></div>
+    </div>
+    <div class="field"><label>نظام النقاط (ملاحظة اختيارية)</label><input id="f_pointsys" value="${esc(d.pointsSystem)}" placeholder="Kill + Placement"></div>
+    <div class="field"><label>الجائزة (دينار عراقي)</label><input id="f_prize" value="${d.prize||''}" placeholder="مثال: 500000" ${numAttrs('')}></div>
+    <div class="field"><label>حالة البطولة</label>
+      <select id="f_status">
+        <option value="upcoming" ${d.status==='upcoming'?'selected':''}>قادمة</option>
+        <option value="ongoing" ${d.status==='ongoing'?'selected':''}>جارية</option>
+        <option value="finished" ${d.status==='finished'?'selected':''}>منتهية</option>
+      </select>
+    </div>
+
+    <div class="divider-label">الفرق المشاركة بالبطولة (كل السكواد)</div>
+    ${state.teams.length===0 ? `<div class="empty">أضف فرقاً أولاً من تبويب الفرق</div>` : `
+      ${participantTeams.length ? `<div class="tag-row">${participantTeams.map(t=>`
+        <span class="pill" style="display:flex;align-items:center;gap:6px;">${esc(t.name)}
+          <span style="cursor:pointer;color:var(--danger);" onclick="removeParticipantTeam('${t.id}')">✕</span>
+        </span>`).join('')}</div>` : `<div class="empty">لم تُضف أي فرق بعد</div>`}
+      ${availableToAdd.length ? `
+      <div class="field" style="margin-top:10px;">
+        <select id="f_addteam">
+          <option value="">اختر فريقاً لإضافته...</option>
+          ${availableToAdd.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('')}
+        </select>
+      </div>
+      <button class="btn secondary small" onclick="addParticipantTeam()">+ إضافة الفريق للبطولة</button>` : ''}
+    `}
+    <div class="empty" style="margin:10px 0;">${participantTeams.length} فريق مسجل بالبطولة</div>
+
+    <div class="divider-label">الأدوار</div>
+    ${renderBrStagesEditor(d)}
+
+    <div style="height:20px;"></div>
+    <button class="btn" onclick="saveTournamentForm()">حفظ البطولة</button>
+    <div style="height:10px;"></div>
+    <button class="btn secondary" onclick="backToAdmin()">إلغاء</button>
+  `;
+}
+function renderBrStagesEditor(d){
+  const stages = d.brStages;
+  let html = '';
+  stages.forEach((stage,si)=>{
+    const eligible = stageEligiblePool(d, si);
+    const assignedIds = new Set();
+    stage.groups.forEach(g=>g.teamIds.forEach(id=>assignedIds.add(id)));
+    html += `
+    <div class="stage-block">
+      <div class="stage-head">
+        <input value="${esc(stage.name)}" placeholder="اسم الدور (مثال: المجموعات)" oninput="editCtx.draft.brStages[${si}].name=this.value">
+        <button class="mini-btn del" onclick="removeBrStage(${si})">✕</button>
+      </div>
+      <div class="field-row" style="margin:10px 0;">
+        <div class="field"><label>عدد المتأهلين من كل مجموعة (للدور القادم)</label>
+          <input value="${stage.qualifyPerGroup||''}" placeholder="مثال: 6" ${numAttrs(`editCtx.draft.brStages[${si}].qualifyPerGroup=Number(this.value)||0`)}>
+        </div>
+      </div>
+      ${eligible.length===0 ? `<div class="empty">لا يوجد فرق مؤهلة لهذا الدور بعد${si===0?' — سجّل الفرق المشاركة أولاً':''}</div>` : `
+      <div class="field-row" style="align-items:flex-end;margin-bottom:10px;">
+        <div class="field"><label>توليد عدد المجموعات دفعة وحدة (A,B,C...)</label>
+          <input id="f_groupcount_${si}" type="text" inputmode="numeric" pattern="[0-9]*" oninput="this.value=this.value.replace(/[^0-9]/g,'')" placeholder="مثال: 4">
+        </div>
+        <button class="btn secondary small" onclick="generateBrGroups(${si})" style="margin-bottom:15px;">توليد</button>
+      </div>
+      <div class="groups-wrap">
+        ${stage.groups.map((g,gi)=>renderBrGroup(d, si, gi, eligible)).join('')}
+      </div>
+      <button class="btn secondary small" onclick="addBrGroup(${si})">+ إضافة مجموعة يدوياً</button>
+      `}
+    </div>`;
+  });
+  html += `<button class="btn secondary" style="margin-top:4px;" onclick="addBrStage()">+ إضافة دور جديد</button>`;
+  return html;
+}
+function renderBrGroup(d, si, gi, eligible){
+  const g = d.brStages[si].groups[gi];
+  const availableToAdd = eligible.filter(t=>!g.teamIds.includes(t.id));
+  const assignedTeams = g.teamIds.map(id=>team(id)).filter(Boolean);
+
+  const teamResultRows = (g.teamResults||[]).map((r,ri)=>`
+    <div class="mini-result-card">
+      <div class="field" style="margin-bottom:8px;">
+        <select onchange="syncTournamentDraftFromDom(); editCtx.draft.brStages[${si}].groups[${gi}].teamResults[${ri}].teamId=this.value; editCtx.draft.brStages[${si}].groups[${gi}].teamResults[${ri}].teamName=(state.teams.find(t=>t.id===this.value)||{}).name||''; render();">
+          ${assignedTeams.map(t=>`<option value="${t.id}" ${r.teamId===t.id?'selected':''}>${esc(t.name)}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field-row" style="margin-bottom:8px;">
+        <div class="field"><label>البويا</label><input value="${r.booyahs||''}" ${numAttrs(`editCtx.draft.brStages[${si}].groups[${gi}].teamResults[${ri}].booyahs=Number(this.value)||0`)}></div>
+        <div class="field"><label>القتلات</label><input value="${r.kills||''}" ${numAttrs(`editCtx.draft.brStages[${si}].groups[${gi}].teamResults[${ri}].kills=Number(this.value)||0`)}></div>
+      </div>
+      <div class="field-row" style="margin-bottom:4px;">
+        <div class="field"><label>نقاط المركز</label><input value="${r.placementPoints||''}" ${numAttrs(`editCtx.draft.brStages[${si}].groups[${gi}].teamResults[${ri}].placementPoints=Number(this.value)||0`)}></div>
+        <div class="field"><label>المجموع</label><input value="${r.totalPoints||''}" ${numAttrs(`editCtx.draft.brStages[${si}].groups[${gi}].teamResults[${ri}].totalPoints=Number(this.value)||0`)}></div>
+      </div>
+      <button class="btn danger small" onclick="removeBrTeamResult(${si},${gi},${ri})">حذف</button>
+    </div>`).join('');
+
+  const rosterPool = [];
+  assignedTeams.forEach(t=>teamPlayers(t).forEach(p=>{ if(!rosterPool.find(x=>x.id===p.id)) rosterPool.push(p); }));
+  const playerPool = rosterPool.length ? rosterPool : state.players;
+  const playerResultRows = (g.playerResults||[]).map((r,ri)=>`
+    <div class="mini-result-card">
+      <div class="field" style="margin-bottom:8px;">
+        <select onchange="syncTournamentDraftFromDom(); editCtx.draft.brStages[${si}].groups[${gi}].playerResults[${ri}].playerId=this.value; editCtx.draft.brStages[${si}].groups[${gi}].playerResults[${ri}].playerName=(state.players.find(p=>p.id===this.value)||{}).name||''; render();">
+          ${playerPool.map(p=>`<option value="${p.id}" ${r.playerId===p.id?'selected':''}>${esc(p.name)}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field" style="margin-bottom:4px;"><label>القتلات</label><input value="${r.kills||''}" ${numAttrs(`editCtx.draft.brStages[${si}].groups[${gi}].playerResults[${ri}].kills=Number(this.value)||0`)}></div>
+      <button class="btn danger small" onclick="removeBrPlayerResult(${si},${gi},${ri})">حذف</button>
+    </div>`).join('');
+
+  return `
+  <div class="group-block">
+    <div class="group-head">
+      <input value="${esc(g.name)}" placeholder="اسم المجموعة (A)" oninput="editCtx.draft.brStages[${si}].groups[${gi}].name=this.value">
+      <button class="mini-btn del" onclick="removeBrGroup(${si},${gi})">✕</button>
+    </div>
+    ${assignedTeams.length ? `<div class="tag-row">${assignedTeams.map(t=>`<span class="pill" style="display:flex;align-items:center;gap:6px;">${esc(t.name)}<span style="cursor:pointer;color:var(--danger);" onclick="removeTeamFromBrGroup(${si},${gi},'${t.id}')">✕</span></span>`).join('')}</div>` : `<div class="empty" style="padding:16px;">لا فرق بهذه المجموعة</div>`}
+    ${availableToAdd.length ? `
+    <div class="field" style="margin-top:8px;">
+      <select id="f_add_${si}_${gi}"><option value="">اختر فريقاً لإضافته...</option>${availableToAdd.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('')}</select>
+    </div>
+    <button class="btn secondary small" onclick="addTeamToBrGroup(${si},${gi})">+ إضافة للمجموعة</button>` : ''}
+
+    <div class="field" style="margin-top:12px;">
+      <label>عدد المباريات الملعوبة</label>
+      <input value="${g.matchesCount||''}" placeholder="مثال: 6" ${numAttrs(`editCtx.draft.brStages[${si}].groups[${gi}].matchesCount=Number(this.value)||0`)}>
+    </div>
+
+    ${assignedTeams.length ? `
+    <div class="divider-label" style="margin:14px 0 8px;">نتائج الفرق</div>
+    ${teamResultRows}
+    <button class="btn secondary small" onclick="addBrTeamResult(${si},${gi})">+ إضافة نتيجة فريق</button>
+
+    <div class="divider-label" style="margin:14px 0 8px;">إحصائيات اللاعبين</div>
+    ${playerResultRows}
+    <button class="btn secondary small" onclick="addBrPlayerResult(${si},${gi})">+ إضافة نتيجة لاعب</button>
+    ` : ''}
+  </div>`;
+}
+function addBrStage(){
+  syncTournamentDraftFromDom();
+  const n = editCtx.draft.brStages.length;
+  const defaultNames = ['المجموعات','نصف النهائي','النهائي'];
+  editCtx.draft.brStages.push({ id: uid('stg'), name: defaultNames[n] || ('الدور '+(n+1)), qualifyPerGroup:0, groups:[] });
+  render();
+}
+function removeBrStage(si){ syncTournamentDraftFromDom(); editCtx.draft.brStages.splice(si,1); render(); }
+function generateBrGroups(si){
+  syncTournamentDraftFromDom();
+  const input = document.getElementById('f_groupcount_'+si);
+  const n = Math.max(1, Number(input?input.value:0)||0);
+  if(!n) return;
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const stage = editCtx.draft.brStages[si];
+  stage.groups = [];
+  for(let i=0;i<n;i++){
+    stage.groups.push({ id: uid('grp'), name:'المجموعة '+(letters[i]||(i+1)), teamIds:[], matchesCount:0, teamResults:[], playerResults:[] });
+  }
+  render();
+}
+function addBrGroup(si){
+  syncTournamentDraftFromDom();
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const stage = editCtx.draft.brStages[si];
+  stage.groups = stage.groups||[];
+  const name = stage.groups.length < letters.length ? ('المجموعة '+letters[stage.groups.length]) : ('مجموعة '+(stage.groups.length+1));
+  stage.groups.push({ id: uid('grp'), name, teamIds:[], matchesCount:0, teamResults:[], playerResults:[] });
+  render();
+}
+function removeBrGroup(si,gi){ syncTournamentDraftFromDom(); editCtx.draft.brStages[si].groups.splice(gi,1); render(); }
+function addTeamToBrGroup(si,gi){
+  const sel = document.getElementById(`f_add_${si}_${gi}`);
+  if(!sel || !sel.value) return;
+  syncTournamentDraftFromDom();
+  editCtx.draft.brStages[si].groups[gi].teamIds.push(sel.value);
+  render();
+}
+function removeTeamFromBrGroup(si,gi,teamId){
+  syncTournamentDraftFromDom();
+  const g = editCtx.draft.brStages[si].groups[gi];
+  g.teamIds = g.teamIds.filter(id=>id!==teamId);
+  g.teamResults = (g.teamResults||[]).filter(r=>r.teamId!==teamId);
+  render();
+}
+function addBrTeamResult(si,gi){
+  syncTournamentDraftFromDom();
+  const g = editCtx.draft.brStages[si].groups[gi];
+  const teams = g.teamIds.map(id=>team(id)).filter(Boolean);
+  if(!teams.length) return;
+  const already = new Set((g.teamResults||[]).map(r=>r.teamId));
+  const next = teams.find(t=>!already.has(t.id)) || teams[0];
+  g.teamResults = g.teamResults||[];
+  g.teamResults.push({teamId:next.id, teamName:next.name, booyahs:0, kills:0, placementPoints:0, totalPoints:0});
+  render();
+}
+function removeBrTeamResult(si,gi,ri){ syncTournamentDraftFromDom(); editCtx.draft.brStages[si].groups[gi].teamResults.splice(ri,1); render(); }
+function addBrPlayerResult(si,gi){
+  syncTournamentDraftFromDom();
+  const g = editCtx.draft.brStages[si].groups[gi];
+  const teams = g.teamIds.map(id=>team(id)).filter(Boolean);
+  const pool = [];
+  teams.forEach(t=>teamPlayers(t).forEach(p=>{ if(!pool.find(x=>x.id===p.id)) pool.push(p); }));
+  const finalPool = pool.length ? pool : state.players;
+  if(!finalPool.length) return;
+  const already = new Set((g.playerResults||[]).map(r=>r.playerId));
+  const next = finalPool.find(p=>!already.has(p.id)) || finalPool[0];
+  g.playerResults = g.playerResults||[];
+  g.playerResults.push({playerId:next.id, playerName:next.name, kills:0});
+  render();
+}
+function removeBrPlayerResult(si,gi,ri){ syncTournamentDraftFromDom(); editCtx.draft.brStages[si].groups[gi].playerResults.splice(ri,1); render(); }
+
+function renderCsForm(d){
+  d.csSquadsCount = d.csSquadsCount || 8;
+  d.csRounds = d.csRounds || [];
+  d.participantTeamIds = d.participantTeamIds || [];
+  const participantTeams = d.participantTeamIds.map(id=>team(id)).filter(Boolean);
+  const availableToAdd = state.teams.filter(t=>!d.participantTeamIds.includes(t.id));
+  const squadOptions = [4,8,16,32].map(n=>`<option value="${n}" ${d.csSquadsCount==n?'selected':''}>${n} فرق</option>`).join('');
+  const readyToGenerate = participantTeams.length === d.csSquadsCount;
+
+  return `
+    <div class="page-title"><button class="back-btn" onclick="backToAdmin()">›</button><h1>${d.name?'تعديل بطولة':'بطولة جديدة'} <span class="format-tag">Clash Squad</span></h1></div>
+    <div class="field"><label>اسم البطولة</label><input id="f_name" value="${esc(d.name)}" placeholder="مثال: CLASH CUP S1"></div>
+    <div class="field">
+      <label>شعار البطولة</label>
+      <div style="display:flex;align-items:center;gap:12px;">
+        ${avatarImg(d.logo, d.name, true)}
+        <div style="flex:1;">
+          <input type="file" accept="image/*" id="f_trn_logo_file" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none;" onchange="uploadImageField(this,'logo',syncTournamentDraftFromDom)">
+          <label for="f_trn_logo_file" class="btn secondary small" style="cursor:pointer;">${icon('camera',15)} اختر صورة</label>
+          <div id="f_trn_logo_file_status" style="font-size:11px;color:var(--ink-faint);margin-top:4px;"></div>
+          <input id="f_trn_logo_url" value="${esc((d.logo||'').startsWith('http')?d.logo:'')}" placeholder="أو الصق رابط الصورة" style="margin-top:8px;" onchange="syncTournamentDraftFromDom(); editCtx.draft.logo=this.value.trim(); render();">
+        </div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>المنظم</label><input id="f_org" value="${esc(d.organizer)}"></div>
+      <div class="field"><label>اللعبة</label><input id="f_game" value="${esc(d.game)}" placeholder="Free Fire"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>تاريخ البداية</label><input id="f_start" type="date" value="${esc(d.startDate)}"></div>
+      <div class="field"><label>تاريخ النهاية</label><input id="f_end" type="date" value="${esc(d.endDate)}"></div>
+    </div>
+    <div class="field"><label>نظام النقاط (ملاحظة اختيارية)</label><input id="f_pointsys" value="${esc(d.pointsSystem)}" placeholder="أفضل من 3 جولات"></div>
+    <div class="field"><label>الجائزة (دينار عراقي)</label><input id="f_prize" value="${d.prize||''}" placeholder="مثال: 500000" ${numAttrs('')}></div>
+    <div class="field"><label>حالة البطولة</label>
+      <select id="f_status">
+        <option value="upcoming" ${d.status==='upcoming'?'selected':''}>قادمة</option>
+        <option value="ongoing" ${d.status==='ongoing'?'selected':''}>جارية</option>
+        <option value="finished" ${d.status==='finished'?'selected':''}>منتهية</option>
+      </select>
+    </div>
+
+    <div class="divider-label">عدد الفرق المشاركة (يحدد الأدوار تلقائياً)</div>
+    <div class="field">
+      <select id="f_cs_squads" onchange="syncTournamentDraftFromDom(); editCtx.draft.csSquadsCount=Number(this.value); render();">${squadOptions}</select>
+    </div>
+
+    <div class="divider-label">الفرق المشاركة</div>
+    ${state.teams.length===0 ? `<div class="empty">أضف فرقاً أولاً من تبويب الفرق</div>` : `
+      ${participantTeams.length ? `<div class="tag-row">${participantTeams.map(t=>`
+        <span class="pill" style="display:flex;align-items:center;gap:6px;">${esc(t.name)}
+          <span style="cursor:pointer;color:var(--danger);" onclick="removeParticipantTeam('${t.id}')">✕</span>
+        </span>`).join('')}</div>` : `<div class="empty">لم تُضف أي فرق بعد</div>`}
+      ${availableToAdd.length ? `
+      <div class="field" style="margin-top:10px;">
+        <select id="f_addteam">
+          <option value="">اختر فريقاً لإضافته...</option>
+          ${availableToAdd.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('')}
+        </select>
+      </div>
+      <button class="btn secondary small" onclick="addParticipantTeam()">+ إضافة الفريق للبطولة</button>` : ''}
+    `}
+    <div class="empty" style="margin:10px 0;">${participantTeams.length} من ${d.csSquadsCount} فريق مسجل${readyToGenerate?'':' — أكمل العدد قبل توليد الأدوار'}</div>
+    <button class="btn ${readyToGenerate?'':'secondary'}" ${readyToGenerate?'':'disabled'} onclick="generateCsBracket()">
+      ${d.csRounds.length ? 'إعادة توليد الأدوار (سيمسح كل النتائج الحالية!)' : 'توليد أدوار البطولة'}
+    </button>
+    ${d.csRounds.length ? renderCsRoundsEditor(d) : ''}
+
+    <div style="height:20px;"></div>
+    <button class="btn" onclick="saveTournamentForm()">حفظ البطولة</button>
+    <div style="height:10px;"></div>
+    <button class="btn secondary" onclick="backToAdmin()">إلغاء</button>
+  `;
+}
+function generateCsBracket(){
+  syncTournamentDraftFromDom();
+  editCtx.draft.csRounds = generateCsRounds(editCtx.draft.csSquadsCount);
+  render();
+}
+function renderCsRoundsEditor(d){
+  propagateCsBracket(d);
+  const participants = (d.participantTeamIds||[]).map(id=>team(id)).filter(Boolean);
+  return d.csRounds.map((round,ri)=>{
+    const assignedInRound1 = new Set();
+    if(ri===0) round.matches.forEach(m=>{ if(m.teamAId) assignedInRound1.add(m.teamAId); if(m.teamBId) assignedInRound1.add(m.teamBId); });
+    return `
+    <div class="divider-label" style="margin-top:22px;">${esc(round.name)}</div>
+    ${round.matches.map((m,mi)=>{
+      const teamA = m.teamAId?team(m.teamAId):null;
+      const teamB = m.teamBId?team(m.teamBId):null;
+      const winnerId = csMatchWinner(m);
+      if(ri===0){
+        const optsFor = excludeId => participants.filter(t=>!assignedInRound1.has(t.id)||t.id===excludeId)
+          .map(t=>`<option value="${t.id}" ${excludeId===t.id?'selected':''}>${esc(t.name)}</option>`).join('');
+        return `
+        <div class="cs-match-card">
+          <div class="field-row" style="margin-bottom:10px;">
+            <div class="field"><label>الفريق الأول</label>
+              <select onchange="syncTournamentDraftFromDom(); editCtx.draft.csRounds[${ri}].matches[${mi}].teamAId=this.value||null; render();">
+                <option value="">—</option>${optsFor(m.teamAId)}
+              </select>
+            </div>
+            <div class="field"><label>الفريق الثاني</label>
+              <select onchange="syncTournamentDraftFromDom(); editCtx.draft.csRounds[${ri}].matches[${mi}].teamBId=this.value||null; render();">
+                <option value="">—</option>${optsFor(m.teamBId)}
+              </select>
+            </div>
+          </div>
+          ${(teamA&&teamB) ? renderCsMatchScoreAndKills(d,ri,mi,m,teamA,teamB,winnerId) : ''}
+        </div>`;
+      }
+      return `
+      <div class="cs-match-card">
+        <div class="cs-match-teams">
+          <span class="${winnerId===m.teamAId?'cs-winner':''}">${teamA?esc(teamA.name):'بانتظار الفائز'}</span>
+          <span class="cs-vs">VS</span>
+          <span class="${winnerId===m.teamBId?'cs-winner':''}">${teamB?esc(teamB.name):'بانتظار الفائز'}</span>
+        </div>
+        ${(teamA&&teamB) ? renderCsMatchScoreAndKills(d,ri,mi,m,teamA,teamB,winnerId) : ''}
+      </div>`;
+    }).join('')}
+    `;
+  }).join('');
+}
+function renderCsMatchScoreAndKills(d,ri,mi,m,teamA,teamB,winnerId){
+  const pool = [];
+  [teamA,teamB].filter(Boolean).forEach(t=>teamPlayers(t).forEach(p=>{ if(!pool.find(x=>x.id===p.id)) pool.push(p); }));
+  const playerPool = pool.length ? pool : state.players;
+  const killRows = (m.playerStats||[]).map((r,ki)=>`
+    <div class="mini-result-card">
+      <div class="field" style="margin-bottom:8px;">
+        <select onchange="syncTournamentDraftFromDom(); editCtx.draft.csRounds[${ri}].matches[${mi}].playerStats[${ki}].playerId=this.value; editCtx.draft.csRounds[${ri}].matches[${mi}].playerStats[${ki}].playerName=(state.players.find(p=>p.id===this.value)||{}).name||''; render();">
+          ${playerPool.map(p=>`<option value="${p.id}" ${r.playerId===p.id?'selected':''}>${esc(p.name)}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field" style="margin-bottom:4px;"><label>القتلات</label><input value="${r.kills||''}" ${numAttrs(`editCtx.draft.csRounds[${ri}].matches[${mi}].playerStats[${ki}].kills=Number(this.value)||0`)}></div>
+      <button class="btn danger small" onclick="removeCsMatchKill(${ri},${mi},${ki})">حذف</button>
+    </div>`).join('');
+  return `
+    <div class="field-row" style="margin:10px 0;">
+      <div class="field"><label>نتيجة ${esc(teamA.name)}</label><input value="${m.scoreA||''}" ${numAttrs(`editCtx.draft.csRounds[${ri}].matches[${mi}].scoreA=Number(this.value)||0`)}></div>
+      <div class="field"><label>نتيجة ${esc(teamB.name)}</label><input value="${m.scoreB||''}" ${numAttrs(`editCtx.draft.csRounds[${ri}].matches[${mi}].scoreB=Number(this.value)||0`)}></div>
+    </div>
+    ${winnerId ? `<div class="empty" style="padding:8px;margin-bottom:10px;color:var(--gold-bright);">متأهل: ${esc((winnerId===m.teamAId?teamA:teamB).name)}</div>` : ''}
+    <div class="divider-label" style="margin:10px 0 6px;">قتلات اللاعبين بهذه المباراة</div>
+    ${killRows}
+    <button class="btn secondary small" onclick="addCsMatchKill(${ri},${mi})">+ إضافة قتلات لاعب</button>
+  `;
+}
+function addCsMatchKill(ri,mi){
+  syncTournamentDraftFromDom();
+  const m = editCtx.draft.csRounds[ri].matches[mi];
+  const teamA = m.teamAId?team(m.teamAId):null, teamB = m.teamBId?team(m.teamBId):null;
+  const pool = [];
+  [teamA,teamB].filter(Boolean).forEach(t=>teamPlayers(t).forEach(p=>{ if(!pool.find(x=>x.id===p.id)) pool.push(p); }));
+  const finalPool = pool.length ? pool : state.players;
+  if(!finalPool.length) return;
+  const already = new Set((m.playerStats||[]).map(r=>r.playerId));
+  const next = finalPool.find(p=>!already.has(p.id)) || finalPool[0];
+  m.playerStats = m.playerStats||[];
+  m.playerStats.push({playerId:next.id, playerName:next.name, kills:0});
+  render();
+}
+function removeCsMatchKill(ri,mi,ki){ syncTournamentDraftFromDom(); editCtx.draft.csRounds[ri].matches[mi].playerStats.splice(ki,1); render(); }
+
+function syncTournamentDraftFromDom(){
+  const d = editCtx.draft;
+  const g = id => document.getElementById(id);
+  if(g('f_name')) d.name = g('f_name').value;
+  if(g('f_org')) d.organizer = g('f_org').value;
+  if(g('f_game')) d.game = g('f_game').value;
+  if(g('f_start')) d.startDate = g('f_start').value;
+  if(g('f_end')) d.endDate = g('f_end').value;
+  if(g('f_teamscount')) d.teamsCount = g('f_teamscount').value;
+  if(g('f_matchescount')) d.matchesCount = g('f_matchescount').value;
+  if(g('f_pointsys')) d.pointsSystem = g('f_pointsys').value;
+  if(g('f_status')) d.status = g('f_status').value;
+}
+function addParticipantTeam(){
+  const sel = document.getElementById('f_addteam');
+  if(!sel || !sel.value) return;
+  syncTournamentDraftFromDom();
+  editCtx.draft.participantTeamIds = editCtx.draft.participantTeamIds || [];
+  editCtx.draft.participantTeamIds.push(sel.value);
+  render();
+}
+function removeParticipantTeam(teamId){
+  syncTournamentDraftFromDom();
+  editCtx.draft.participantTeamIds = (editCtx.draft.participantTeamIds||[]).filter(id=>id!==teamId);
+  editCtx.draft.teamResults = (editCtx.draft.teamResults||[]).filter(r=>r.teamId!==teamId);
+  const remainingTeams = editCtx.draft.participantTeamIds.map(id=>team(id)).filter(Boolean);
+  const remainingPlayerIds = new Set();
+  remainingTeams.forEach(t=>teamPlayers(t).forEach(p=>remainingPlayerIds.add(p.id)));
+  editCtx.draft.playerResults = (editCtx.draft.playerResults||[]).filter(r=>remainingPlayerIds.size===0 || remainingPlayerIds.has(r.playerId));
+  render();
+}
+function addTeamResult(){
+  syncTournamentDraftFromDom();
+  const d = editCtx.draft;
+  const participantTeams = (d.participantTeamIds||[]).map(id=>team(id)).filter(Boolean);
+  if(!participantTeams.length) return;
+  const already = new Set((d.teamResults||[]).map(r=>r.teamId));
+  const next = participantTeams.find(t=>!already.has(t.id)) || participantTeams[0];
+  d.teamResults = d.teamResults||[];
+  d.teamResults.push({teamId:next.id, teamName:next.name, booyahs:0, kills:0, placementPoints:0, totalPoints:0});
+  render();
+}
+function removeTeamResult(i){ syncTournamentDraftFromDom(); editCtx.draft.teamResults.splice(i,1); render(); }
+
+function addPlayerResult(){
+  syncTournamentDraftFromDom();
+  const d = editCtx.draft;
+  const finalPool = state.players;
+  if(!finalPool.length) return;
+  const already = new Set((d.playerResults||[]).map(r=>r.playerId));
+  const next = finalPool.find(p=>!already.has(p.id)) || finalPool[0];
+  d.playerResults = d.playerResults||[];
+  d.playerResults.push({playerId:next.id, playerName:next.name, kills:0});
+  render();
+}
+function removePlayerResult(i){ syncTournamentDraftFromDom(); editCtx.draft.playerResults.splice(i,1); render(); }
+
+async function saveTournamentForm(){
+  const d = editCtx.draft;
+  d.name = document.getElementById('f_name').value.trim();
+  if(!d.name){ showToast('الرجاء إدخال اسم البطولة'); return; }
+  d.organizer = document.getElementById('f_org').value.trim();
+  d.game = document.getElementById('f_game').value.trim();
+  d.startDate = document.getElementById('f_start').value;
+  d.endDate = document.getElementById('f_end').value;
+  d.pointsSystem = document.getElementById('f_pointsys').value.trim();
+  d.prize = Number(document.getElementById('f_prize').value)||0;
+  d.status = document.getElementById('f_status').value;
+
+  if(d.format==='cs') propagateCsBracket(d);
+
+  await persistDoc('tournaments', d);
+  await recomputeStats();
+  showToast('تم حفظ البطولة، وتحدّثت الإحصائيات تلقائياً');
+  backToAdmin();
+}
+
+/* ---------------- derived stats engine ---------------- */
+/* Recomputes team & player aggregate stats from all tournaments' results.
+   Run after any tournament is saved or deleted. */
+async function recomputeStats(){
+  const teamAgg = {};
+  const playerAgg = {};
+  const tournamentChampion = {};   // tournamentId -> teamId
+  const teamTitleTournaments = {}; // teamId -> [{id,name}]
+
+  state.tournaments.forEach(tr=>{
+    if(tr.format==='cs'){
+      (tr.csRounds||[]).forEach(round=>{
+        round.matches.forEach(m=>{
+          [m.teamAId, m.teamBId].filter(Boolean).forEach(teamId=>{
+            const a = teamAgg[teamId] = teamAgg[teamId] || { tournamentIds:new Set(), totalKills:0, placementPoints:0, totalPoints:0, booyahs:0 };
+            a.tournamentIds.add(tr.id);
+          });
+          (m.playerStats||[]).forEach(r=>{
+            if(!r.playerId) return;
+            const a = playerAgg[r.playerId] = playerAgg[r.playerId] || { tournamentIds:new Set(), kills:0, matches:0 };
+            a.tournamentIds.add(tr.id);
+            a.kills += r.kills||0;
+            a.matches += 1;
+            // credit these kills to whichever of the two match teams this player belongs to
+            const pl = player(r.playerId);
+            const belongsTeamId = pl && (pl.currentTeamId===m.teamAId || pl.currentTeamId===m.teamBId) ? pl.currentTeamId : null;
+            if(belongsTeamId && teamAgg[belongsTeamId]) teamAgg[belongsTeamId].totalKills += r.kills||0;
+          });
+        });
+      });
+      const champ = csChampion(tr);
+      if(champ){
+        tournamentChampion[tr.id] = champ;
+        teamTitleTournaments[champ] = teamTitleTournaments[champ] || [];
+        teamTitleTournaments[champ].push({id:tr.id, name:tr.name});
+      }
+    } else {
+      const stages = getBrStages(tr);
+      stages.forEach(stage=>{
+        stage.groups.forEach(g=>{
+          (g.teamResults||[]).forEach(r=>{
+            if(!r.teamId) return;
+            const a = teamAgg[r.teamId] = teamAgg[r.teamId] || { tournamentIds:new Set(), totalKills:0, placementPoints:0, totalPoints:0, booyahs:0 };
+            a.tournamentIds.add(tr.id);
+            a.totalKills += r.kills||0;
+            a.placementPoints += r.placementPoints||0;
+            a.totalPoints += r.totalPoints||0;
+            a.booyahs += r.booyahs||0;
+          });
+          (g.playerResults||[]).forEach(r=>{
+            if(!r.playerId) return;
+            const a = playerAgg[r.playerId] = playerAgg[r.playerId] || { tournamentIds:new Set(), kills:0, matches:0 };
+            a.tournamentIds.add(tr.id);
+            a.kills += r.kills||0;
+            a.matches += g.matchesCount||0;
+          });
+        });
+      });
+      const champ = brChampion(tr);
+      if(champ){
+        tournamentChampion[tr.id] = champ;
+        teamTitleTournaments[champ] = teamTitleTournaments[champ] || [];
+        teamTitleTournaments[champ].push({id:tr.id, name:tr.name});
+      }
+    }
+  });
+
+  // best rank/result — derived live every time from current points (BR) or bracket
+  // progress (CS), never a manually-entered number, so it self-corrects as stats change.
+  const teamBest = {};
+  state.tournaments.forEach(tr=>{
+    if(tr.format==='cs'){
+      const champ = tournamentChampion[tr.id];
+      (tr.csRounds||[]).forEach((round,ri)=>{
+        round.matches.forEach(m=>{
+          [m.teamAId, m.teamBId].filter(Boolean).forEach(teamId=>{
+            const label = champ===teamId ? 'بطل' : ('وصل إلى ' + round.name);
+            const score = champ===teamId ? -1 : ((tr.csRounds.length) - ri);
+            const cur = teamBest[teamId];
+            if(!cur || score < cur.score){ teamBest[teamId] = { score, label, tournamentName: tr.name }; }
+          });
+        });
+      });
+    } else {
+      const champ = tournamentChampion[tr.id];
+      getBrStages(tr).forEach(stage=>{
+        stage.groups.forEach(g=>{
+          rankGroupTeams(g).forEach(r=>{
+            const label = champ===r.teamId ? 'بطل' : ('المركز ' + r.rank + (stage.name?(' — '+stage.name):''));
+            const score = champ===r.teamId ? -1 : r.rank;
+            const cur = teamBest[r.teamId];
+            if(!cur || score < cur.score){ teamBest[r.teamId] = { score, label, tournamentName: tr.name }; }
+          });
+        });
+      });
+    }
+  });
+
+  // persist computed champion onto each tournament (for quick display), preserving order
+  for(let i=0;i<state.tournaments.length;i++){
+    const champ = tournamentChampion[state.tournaments[i].id] || null;
+    if(state.tournaments[i].championTeamId !== champ){
+      const tr = clone(state.tournaments[i]);
+      tr.championTeamId = champ;
+      state.tournaments[i] = tr;
+      await persistDoc('tournaments', tr);
+    }
+  }
+
+  for(let i=0;i<state.teams.length;i++){
+    const t = clone(state.teams[i]);
+    const a = teamAgg[t.id];
+    const best = teamBest[t.id];
+    t.tournamentsCount = a ? a.tournamentIds.size : 0;
+    t.totalKills = a ? a.totalKills : 0;
+    t.placementPoints = a ? a.placementPoints : 0;
+    t.totalPoints = a ? a.totalPoints : 0;
+    t.booyahs = a ? a.booyahs : 0;
+    t.bestResult = best ? best.label : '';
+    t.bestTournament = best ? best.tournamentName : '';
+    t.titles = teamTitleTournaments[t.id] || [];
+    state.teams[i] = t;
+    await persistDoc('teams', t);
+  }
+  for(let i=0;i<state.players.length;i++){
+    const p = clone(state.players[i]);
+    const a = playerAgg[p.id];
+    p.kills = a ? a.kills : 0;
+    p.matches = a ? a.matches : 0;
+    p.tournamentsCount = a ? a.tournamentIds.size : 0;
+    // best result / titles mirror the player's CURRENT team across participated tournaments
+    const teamBestForPlayer = p.currentTeamId ? teamBest[p.currentTeamId] : null;
+    p.bestResult = teamBestForPlayer ? teamBestForPlayer.label : '';
+    p.bestTournament = teamBestForPlayer ? teamBestForPlayer.tournamentName : '';
+    p.titles = p.currentTeamId ? (teamTitleTournaments[p.currentTeamId]||[]) : [];
+    state.players[i] = p;
+    await persistDoc('players', p);
+  }
+}
+
+/* ---------------- PUBLIC: squad application ---------------- */
+const PLAYER_ROLES = ['RUSHER','BOMBER','SUPPORT','COVER'];
+let applyDraft = null;
+let applyStage = 'form'; // 'form' | 'success'
+
+function newApplyDraft(){
+  return {
+    team: { name:'', logo:'' },
+    hasCoach: false,
+    coach: { name:'', photo:'', age:'', nationality:'العراق', flag:'🇮🇶', experience:'', career:[] },
+    players: Array.from({length:6}, ()=>({ name:'', photo:'', role:'', gameId:'', age:'', nationality:'العراق', flag:'🇮🇶', career:[] })),
+    captainIndex: null,
+    contactWhatsapp: ''
+  };
+}
+function openApplyForm(){
+  if(!applyDraft) applyDraft = newApplyDraft();
+  applyStage = 'form';
+  nav('apply');
+}
+function setDeep(obj, path, val){
+  const parts = path.split('.');
+  let cur = obj;
+  for(let i=0;i<parts.length-1;i++) cur = cur[parts[i]];
+  cur[parts[parts.length-1]] = val;
+}
+function applySyncFromDom(){
+  const g = id => document.getElementById(id);
+  const d = applyDraft;
+  if(!d) return;
+  if(g('ap_team_name')) d.team.name = g('ap_team_name').value;
+  if(g('ap_has_coach')) d.hasCoach = g('ap_has_coach').checked;
+  if(d.hasCoach){
+    if(g('ap_coach_name')) d.coach.name = g('ap_coach_name').value;
+    if(g('ap_coach_age')) d.coach.age = g('ap_coach_age').value;
+    if(g('ap_coach_exp')) d.coach.experience = g('ap_coach_exp').value;
+    if(g('ap_coach_nat')) d.coach.nationality = g('ap_coach_nat').value;
+    if(g('ap_coach_flag')) d.coach.flag = g('ap_coach_flag').value.trim();
+  }
+  d.players.forEach((p,i)=>{
+    if(g('ap_p'+i+'_name')) p.name = g('ap_p'+i+'_name').value;
+    if(g('ap_p'+i+'_role')) p.role = g('ap_p'+i+'_role').value;
+    if(g('ap_p'+i+'_gameid')) p.gameId = g('ap_p'+i+'_gameid').value;
+    if(g('ap_p'+i+'_age')) p.age = g('ap_p'+i+'_age').value;
+    if(g('ap_p'+i+'_nat')) p.nationality = g('ap_p'+i+'_nat').value;
+    if(g('ap_p'+i+'_flag')) p.flag = g('ap_p'+i+'_flag').value.trim();
+  });
+  if(g('ap_captain')) d.captainIndex = g('ap_captain').value===''? null : Number(g('ap_captain').value);
+  if(g('ap_whatsapp')) d.contactWhatsapp = g('ap_whatsapp').value;
+}
+async function applyUploadImage(input, path){
+  const file = input.files && input.files[0];
+  if(!file) return;
+  applySyncFromDom();
+  const statusEl = document.getElementById(input.id + '_status');
+  if(statusEl) statusEl.textContent = 'جاري رفع الصورة...';
+  try{
+    if(!assetsCap){ showToast('رفع الصور غير متاح'); if(statusEl) statusEl.textContent=''; return; }
+    const res = await assetsCap.upload(file);
+    setDeep(applyDraft, path, res.url);
+    showToast('تم رفع الصورة بنجاح');
+  }catch(e){
+    console.error('upload failed', e);
+    showToast('تعذر رفع الصورة: ' + (e && e.message ? e.message : 'خطأ غير معروف'));
+  }
+  render();
+}
+function applyUseImageUrl(urlInputId, path){
+  const urlEl = document.getElementById(urlInputId);
+  if(!urlEl) return;
+  const url = urlEl.value.trim();
+  if(!url){ showToast('الصق رابط الصورة أولاً'); return; }
+  applySyncFromDom();
+  setDeep(applyDraft, path, url);
+  showToast('تم استخدام رابط الصورة');
+  render();
+}
+function toggleApplyCoach(checked){ applySyncFromDom(); applyDraft.hasCoach = checked; render(); }
+function addApplyCoachCareerRow(){ applySyncFromDom(); applyDraft.coach.career.push({year:'',team:''}); render(); }
+function removeApplyCoachCareerRow(i){ applySyncFromDom(); applyDraft.coach.career.splice(i,1); render(); }
+function addApplyPlayerCareerRow(pi){ applySyncFromDom(); applyDraft.players[pi].career.push({year:'',team:''}); render(); }
+function removeApplyPlayerCareerRow(pi,i){ applySyncFromDom(); applyDraft.players[pi].career.splice(i,1); render(); }
+
+function renderApplyPlayerBlock(i){
+  const p = applyDraft.players[i];
+  const careerHtml = (p.career||[]).map((c,ci)=>`
+    <div class="results-editor-row" style="grid-template-columns:1fr 2fr auto;">
+      <input value="${esc(c.year)}" placeholder="السنة" oninput="applyDraft.players[${i}].career[${ci}].year=this.value">
+      <input value="${esc(c.team)}" placeholder="اسم الفريق" oninput="applyDraft.players[${i}].career[${ci}].team=this.value">
+      <button class="mini-btn del" type="button" onclick="removeApplyPlayerCareerRow(${i},${ci})">✕</button>
+    </div>`).join('');
+  return `
+    <div class="divider-label">اللاعب ${i+1}${i>=4?' (اختياري)':''}</div>
+    <div class="field"><label>اسم اللاعب</label><input id="ap_p${i}_name" value="${esc(p.name)}" placeholder="${i>=4?'اتركه فاضي إذا ما عندك لاعب '+(i+1):'اسم اللاعب'}"></div>
+    <div class="field">
+      <label>صورة اللاعب</label>
+      <div style="display:flex;align-items:center;gap:12px;">
+        ${avatarImg(p.photo, p.name)}
+        <div style="flex:1;">
+          <input type="file" accept="image/*" id="ap_p${i}_photo_file" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none;" onchange="applyUploadImage(this,'players.${i}.photo')">
+          <label for="ap_p${i}_photo_file" class="btn secondary small" style="cursor:pointer;">${icon('camera',15)} اختر صورة</label>
+          <div id="ap_p${i}_photo_file_status" style="font-size:11px;color:var(--ink-faint);margin-top:4px;"></div>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <input id="ap_p${i}_photo_url" placeholder="أو الصق رابط صورة..." style="flex:1;">
+            <button class="btn secondary small" type="button" onclick="applyUseImageUrl('ap_p${i}_photo_url','players.${i}.photo')">استخدام</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>مركز اللاعب</label>
+        <select id="ap_p${i}_role">
+          <option value="">اختر المركز</option>
+          ${PLAYER_ROLES.map(r=>`<option value="${r}" ${p.role===r?'selected':''}>${r}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field"><label>ID اللاعب</label><input id="ap_p${i}_gameid" value="${esc(p.gameId)}"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label>العمر</label><input id="ap_p${i}_age" type="number" value="${esc(p.age)}"></div>
+      <div class="field"><label>الجنسية</label><input id="ap_p${i}_nat" value="${esc(p.nationality)}"></div>
+    </div>
+    ${flagFieldHtml(p, p.nationality, 'ap_p'+i+'_flag', 'applySyncFromDom', 'علم الجنسية')}
+    <div class="divider-label" style="font-size:12px;">الفرق السابقة اللي لعب فيها</div>
+    <div>${careerHtml}</div>
+    <button class="btn secondary small" type="button" onclick="addApplyPlayerCareerRow(${i})">+ إضافة فريق سابق</button>
+  `;
+}
+
+function renderApplyView(){
+  if(applyStage==='success'){
+    return `
+      <div class="lock-screen">
+        <div class="lock-ic">${icon('star',30)}</div>
+        <h1>تم إرسال التقديم</h1>
+        <p>طلب تسجيل السكواد وصل للإدارة. إذا كان فيه أي ملاحظة على المعلومات راح تتواصل معاكم الإدارة عبر رقم الواتساب اللي حطيتوه، وإذا تمت الموافقة يظهر السكواد بالموقع تلقائياً.</p>
+        <button class="btn" onclick="applyDraft=null; applyStage='form'; nav('home');">رجوع للرئيسية</button>
+      </div>
+    `;
+  }
+  const d = applyDraft;
+  const careerCoachHtml = (d.coach.career||[]).map((c,ci)=>`
+    <div class="results-editor-row" style="grid-template-columns:1fr 2fr auto;">
+      <input value="${esc(c.year)}" placeholder="السنة" oninput="applyDraft.coach.career[${ci}].year=this.value">
+      <input value="${esc(c.team)}" placeholder="اسم الفريق" oninput="applyDraft.coach.career[${ci}].team=this.value">
+      <button class="mini-btn del" type="button" onclick="removeApplyCoachCareerRow(${ci})">✕</button>
+    </div>`).join('');
+
+  return `
+    <div class="page-title"><button class="back-btn" onclick="nav('home')">›</button><h1>تسجيل سكواد جديد</h1></div>
+    <div class="empty" style="margin-bottom:16px;">عبّي معلومات الفريق والمدرب (اختياري) واللاعبين الستة، وراح تراجع الإدارة الطلب وتوافق أو ترفض.</div>
+
+    <div class="divider-label">الفريق</div>
+    <div class="field"><label>اسم الفريق</label><input id="ap_team_name" value="${esc(d.team.name)}" placeholder="مثال: URUK ESPORTS"></div>
+    <div class="field">
+      <label>شعار الفريق</label>
+      <div style="display:flex;align-items:center;gap:12px;">
+        ${avatarImg(d.team.logo, d.team.name, true)}
+        <div style="flex:1;">
+          <input type="file" accept="image/*" id="ap_team_logo_file" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none;" onchange="applyUploadImage(this,'team.logo')">
+          <label for="ap_team_logo_file" class="btn secondary small" style="cursor:pointer;">${icon('camera',15)} اختر صورة</label>
+          <div id="ap_team_logo_file_status" style="font-size:11px;color:var(--ink-faint);margin-top:4px;"></div>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <input id="ap_team_logo_url" placeholder="أو الصق رابط صورة..." style="flex:1;">
+            <button class="btn secondary small" type="button" onclick="applyUseImageUrl('ap_team_logo_url','team.logo')">استخدام</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider-label">المدرب (اختياري)</div>
+    <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-dim);margin-bottom:10px;">
+      <input type="checkbox" id="ap_has_coach" ${d.hasCoach?'checked':''} onchange="toggleApplyCoach(this.checked)">
+      السكواد عنده مدرب
+    </label>
+    ${d.hasCoach ? `
+      <div class="field"><label>اسم المدرب</label><input id="ap_coach_name" value="${esc(d.coach.name)}"></div>
+      <div class="field">
+        <label>صورة المدرب</label>
+        <div style="display:flex;align-items:center;gap:12px;">
+          ${avatarImg(d.coach.photo, d.coach.name)}
+          <div style="flex:1;">
+            <input type="file" accept="image/*" id="ap_coach_photo_file" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none;" onchange="applyUploadImage(this,'coach.photo')">
+            <label for="ap_coach_photo_file" class="btn secondary small" style="cursor:pointer;">${icon('camera',15)} اختر صورة</label>
+            <div id="ap_coach_photo_file_status" style="font-size:11px;color:var(--ink-faint);margin-top:4px;"></div>
+            <div style="display:flex;gap:8px;margin-top:8px;">
+              <input id="ap_coach_photo_url" placeholder="أو الصق رابط صورة..." style="flex:1;">
+              <button class="btn secondary small" type="button" onclick="applyUseImageUrl('ap_coach_photo_url','coach.photo')">استخدام</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>عمر المدرب</label><input id="ap_coach_age" type="number" value="${esc(d.coach.age)}"></div>
+        <div class="field"><label>خبرة المدرب (سنوات)</label><input id="ap_coach_exp" type="number" value="${esc(d.coach.experience)}"></div>
+      </div>
+      <div class="field"><label>جنسية المدرب</label><input id="ap_coach_nat" value="${esc(d.coach.nationality)}"></div>
+      ${flagFieldHtml(d.coach, d.coach.nationality, 'ap_coach_flag', 'applySyncFromDom', 'علم دولة المدرب')}
+      <div class="divider-label" style="font-size:12px;">الفرق السابقة اللي درّبها</div>
+      <div>${careerCoachHtml}</div>
+      <button class="btn secondary small" type="button" onclick="addApplyCoachCareerRow()">+ إضافة فريق سابق</button>
+    ` : ''}
+
+    <div class="divider-label">اللاعبون</div>
+    <div class="empty" style="margin-bottom:10px;">أقل شي 4 لاعبين (اللاعب الخامس والسادس اختياريين — اتركهم فاضين إذا ما عندك).</div>
+    ${d.players.map((p,i)=>renderApplyPlayerBlock(i)).join('')}
+
+    <div class="divider-label">قائد الفريق</div>
+    <div class="field">
+      <label>اختر قائد الفريق من اللاعبين اللي سجلتهم</label>
+      <select id="ap_captain">
+        <option value="">اختر قائد الفريق</option>
+        ${d.players.map((p,i)=>`<option value="${i}" ${d.captainIndex===i?'selected':''} ${i>=4 && !p.name.trim()?'disabled':''}>اللاعب ${i+1}${p.name?' — '+esc(p.name):''}</option>`).join('')}
+      </select>
+    </div>
+
+    <div class="divider-label">التواصل</div>
+    <div class="field"><label>رقم واتساب لأي شخص بالسكواد (للتواصل لو فيه ملاحظة على المعلومات)</label><input id="ap_whatsapp" value="${esc(d.contactWhatsapp)}" placeholder="مثال: 9647xxxxxxxx"></div>
+
+    <div style="height:10px;"></div>
+    <button class="btn" onclick="submitApplication()" style="width:100%;">إرسال التقديم</button>
+  `;
+}
+
+async function submitApplication(){
+  applySyncFromDom();
+  const d = applyDraft;
+  if(!d.team.name.trim()){ showToast('الرجاء إدخال اسم الفريق'); return; }
+  for(let i=0;i<4;i++){
+    if(!d.players[i].name.trim()){ showToast('الرجاء إدخال اسم اللاعب '+(i+1)+' (أقل شي 4 لاعبين مطلوبين)'); return; }
+  }
+  if(d.captainIndex===null || d.captainIndex===undefined){ showToast('الرجاء اختيار قائد الفريق'); return; }
+  const captainSlot = d.players[Number(d.captainIndex)];
+  if(!captainSlot || !captainSlot.name.trim()){ showToast('قائد الفريق لازم يكون من لاعب مسجّل فعلياً'); return; }
+  if(!d.contactWhatsapp.trim()){ showToast('الرجاء إدخال رقم واتساب للتواصل'); return; }
+  if(d.hasCoach && !d.coach.name.trim()){ showToast('الرجاء إدخال اسم المدرب أو إلغاء تفعيل خانة المدرب'); return; }
+
+  // Only players 1-4 are mandatory — drop empty optional slots (5/6) and
+  // remap the captain index to its position within the submitted list.
+  const filledPlayers = d.players
+    .map((p,i)=>({ p, origIndex:i }))
+    .filter(x=>x.p.name.trim());
+  const newCaptainIndex = filledPlayers.findIndex(x=>x.origIndex===Number(d.captainIndex));
+  if(newCaptainIndex===-1){ showToast('تعذر تحديد قائد الفريق'); return; }
+
+  const payload = {
+    team: { name: d.team.name.trim(), logo: d.team.logo||'' },
+    coach: d.hasCoach ? {
+      name: (d.coach.name||'').trim(), photo: d.coach.photo||'', age: d.coach.age||'',
+      nationality: d.coach.nationality||'العراق', flag: d.coach.flag||'🇮🇶',
+      experience: d.coach.experience||'', career: (d.coach.career||[]).filter(c=>(c.year||'').trim()||(c.team||'').trim())
+    } : null,
+    players: filledPlayers.map(x=>({
+      name: x.p.name.trim(), photo: x.p.photo||'', role: x.p.role||'', gameId: x.p.gameId||'',
+      age: x.p.age||'', nationality: x.p.nationality||'العراق', flag: x.p.flag||'🇮🇶',
+      career: (x.p.career||[]).filter(c=>(c.year||'').trim()||(c.team||'').trim())
+    })),
+    captainIndex: newCaptainIndex,
+    contactWhatsapp: d.contactWhatsapp.trim()
+  };
+
+  try{
+    const res = await fetch(API_BASE + '/applications', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      showToast(err.error || 'تعذر إرسال التقديم');
+      return;
+    }
+    applyStage = 'success';
+    render();
+    window.scrollTo(0,0);
+  }catch(e){
+    console.error('submit application failed', e);
+    showToast('تعذر إرسال التقديم — تأكد من الاتصال بالإنترنت');
+  }
+}
+
+/* ---------------- ADMIN: applications review ---------------- */
+function pendingApplicationsCount(){ return state.applications.filter(a=>a.status==='pending').length; }
+
+async function loadApplications(){
+  try{
+    const res = await fetch(API_BASE + '/applications', { headers: authHeaders() });
+    if(res.ok){ state.applications = await res.json(); }
+    else if(res.status===401){ showToast('انتهت صلاحية الدخول، سجّل الدخول من جديد'); }
+  }catch(e){ console.error('load applications failed', e); }
+}
+
+let adminAppFilter = 'pending';
+function setAdminAppFilter(f){ adminAppFilter = f; render(); }
+
+function renderAdminApplicationsTab(){
+  const list = state.applications.filter(a=>a.status===adminAppFilter).slice().reverse();
+  return `
+    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+      <button class="btn ${adminAppFilter==='pending'?'':'secondary'} small" onclick="setAdminAppFilter('pending')">قيد الانتظار (${state.applications.filter(a=>a.status==='pending').length})</button>
+      <button class="btn ${adminAppFilter==='approved'?'':'secondary'} small" onclick="setAdminAppFilter('approved')">مقبولة</button>
+      <button class="btn ${adminAppFilter==='rejected'?'':'secondary'} small" onclick="setAdminAppFilter('rejected')">مرفوضة</button>
+      <button class="btn secondary small" onclick="loadApplications().then(render)">↻ تحديث</button>
+    </div>
+    ${list.length===0 ? `<div class="empty">لا توجد طلبات هنا</div>` : list.map(a=>renderApplicationCard(a)).join('')}
+  `;
+}
+
+function careerListHtml(career){
+  if(!career || !career.length) return `<div style="font-size:11px;color:var(--ink-faint);">بدون مسيرة سابقة مذكورة</div>`;
+  return `<div style="font-size:11px;color:var(--ink-faint);">${career.map(c=>esc((c.team||'—')+(c.year?' ('+c.year+')':''))).join(' • ')}</div>`;
+}
+
+function renderApplicationCard(a){
+  const captain = a.players[a.captainIndex];
+  const personRow = (label, p, extra) => `
+    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line-faint,rgba(255,255,255,.06));">
+      ${avatarImg(p.photo, p.name)}
+      <div style="flex:1;min-width:0;">
+        <div style="font-weight:700;font-size:13px;">${esc(label)} ${esc(p.flag||'')}</div>
+        <div style="font-size:12px;color:var(--ink-dim);">${esc(p.nationality||'—')} • العمر: ${esc(p.age||'—')}${extra||''}</div>
+        ${careerListHtml(p.career)}
+      </div>
+    </div>`;
+
+  const playersHtml = a.players.map((p,i)=>personRow(
+    'اللاعب ' + (i+1) + (i===a.captainIndex?' (القائد)':'') + ' — ' + esc(p.name),
+    p,
+    ' • المركز: ' + esc(p.role||'—') + ' • ID: ' + esc(p.gameId||'—')
+  )).join('');
+
+  const coachHtml = a.coach
+    ? personRow('المدرب — ' + esc(a.coach.name), a.coach, ' • خبرة: ' + esc(a.coach.experience||'—') + ' سنة')
+    : `<div style="font-size:12px;color:var(--ink-faint);padding:8px 0;">بدون مدرب</div>`;
+
+  return `
+    <div class="admin-item-row" style="flex-direction:column;align-items:stretch;gap:4px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          ${avatarImg(a.team.logo, a.team.name, true)}
+          <span class="ai-name">${esc(a.team.name)}</span>
+        </div>
+        <span style="font-size:11px;color:var(--ink-faint);">${a.submittedAt ? new Date(a.submittedAt).toLocaleString('ar') : ''}</span>
+      </div>
+      <div style="font-size:12px;color:var(--gold-bright);font-weight:700;margin-top:6px;">واتساب للتواصل: ${esc(a.contactWhatsapp)}</div>
+      <div style="font-size:12px;color:var(--ink-dim);margin-top:8px;font-weight:700;">المدرب</div>
+      ${coachHtml}
+      <div style="font-size:12px;color:var(--ink-dim);margin-top:4px;font-weight:700;">اللاعبون (${a.players.length})</div>
+      ${playersHtml}
+      ${a.status==='pending' ? `
+        <div style="display:flex;gap:8px;margin-top:10px;">
+          <button class="btn small" style="flex:1;" onclick="decideApplication('${a.id}','approve')">قبول</button>
+          <button class="btn danger small" style="flex:1;" onclick="decideApplication('${a.id}','reject')">رفض</button>
+        </div>
+      ` : `<div style="font-size:12px;color:var(--ink-faint);margin-top:8px;">الحالة: ${a.status==='approved'?'مقبول ✓':'مرفوض ✕'}</div>`}
+    </div>
+  `;
+}
+
+async function decideApplication(id, action){
+  if(action==='reject' && !confirm('تأكيد رفض هذا الطلب؟')) return;
+  try{
+    const res = await fetch(API_BASE + '/applications', {
+      method: 'PUT',
+      headers: authHeaders(),
+      body: JSON.stringify({ id, action })
+    });
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      showToast(err.error || 'تعذر تنفيذ العملية');
+      return;
+    }
+    showToast(action==='approve' ? 'تمت الموافقة وإضافة السكواد تلقائياً' : 'تم رفض الطلب');
+    await loadApplications();
+    await initDb();
+  }catch(e){
+    console.error('decide application failed', e);
+    showToast('تعذر تنفيذ العملية');
+  }
+}
+
+/* ---------------- boot ---------------- */
+document.getElementById('adminGearBtn').innerHTML = icon('gear',18);
+document.getElementById('applyBtn').innerHTML = icon('clipboard',18);
+document.querySelector('#bnNews .bn-ic').innerHTML = icon('bell',22);
+document.querySelector('#bnHome .bn-ic').innerHTML = icon('home',22);
+document.querySelector('#bnProfile .bn-ic').innerHTML = icon('user',22);
+document.getElementById('app').innerHTML = `<div class="loading-strip">جارِ التحميل...</div>`;
+initDb();
+</script>
+</body>
+</html>
